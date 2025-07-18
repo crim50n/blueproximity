@@ -1,0 +1,15 @@
+Source: blueproximity
+Section: utils
+Priority: optional
+Maintainer: crims0n <crims0n@minios.dev>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://github.com/crim50n/blueproximity
+
+Package: blueproximity
+Architecture: all
+Depends: ${misc:Depends}, python3, python3-gi, python3-configobj, python3-bluez, python3-bleak, gir1.2-ayatanaappindicator3-0.1
+Description: Locks/unlocks your screen based on Bluetooth proximity
+ BlueProximity is a tool that locks your computer screen when you walk away
+ with your Bluetooth device and unlocks it when you return. Useful for
+ security and convenience in desktop environments.

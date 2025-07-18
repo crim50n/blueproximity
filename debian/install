@@ -1,0 +1,10 @@
+proximity.py usr/share/blueproximity/
+proximity.glade usr/share/blueproximity/
+blueproximity_attention.svg usr/share/blueproximity/
+blueproximity_base.svg usr/share/blueproximity/
+blueproximity_error.svg usr/share/blueproximity/
+blueproximity_nocon.svg usr/share/blueproximity/
+blueproximity_pause.svg usr/share/blueproximity/
+doc usr/share/blueproximity/
+addons/blueproximity.desktop usr/share/applications/blueproximity.desktop
+addons/blueproximity.xpm usr/share/pixmaps/blueproximity.xpm

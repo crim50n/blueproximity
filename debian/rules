@@ -1,0 +1,38 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	# No build step required
+
+override_dh_auto_install:
+	if [ -d "po" ]; then \
+		echo "Compiling translations (.mo files)..."; \
+		for lang_file in po/*.po; do \
+			lang=$$(basename "$$lang_file" .po); \
+			install_dir="$(CURDIR)/debian/blueproximity/usr/share/locale/$$lang/LC_MESSAGES"; \
+			mkdir -p "$$install_dir"; \
+			msgfmt -o "$$install_dir/blueproximity.mo" "$$lang_file"; \
+			echo "  - compiled $$lang_file"; \
+		done; \
+	else \
+		echo "No 'po' directory found, skipping locale generation."; \
+	fi
+
+	# Install main executable with permissions
+	install -D -m 755 addons/blueproximity $(CURDIR)/debian/blueproximity/usr/bin/blueproximity
+
+override_dh_installman:
+	install -D -m 644 doc/blueproximity.1 $(CURDIR)/debian/blueproximity/usr/share/man/man1/blueproximity.1
+
+override_dh_installmenu:
+	# No menu file
+
+override_dh_installinit:
+	# No init script
+
+override_dh_installdocs:
+	install -D -m 644 README.md $(CURDIR)/debian/blueproximity/usr/share/doc/blueproximity/README.md
+	install -D -m 644 CHANGELOG $(CURDIR)/debian/blueproximity/usr/share/doc/blueproximity/CHANGELOG
+	install -D -m 644 LICENSE $(CURDIR)/debian/blueproximity/usr/share/doc/blueproximity/LICENSE

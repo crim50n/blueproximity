@@ -1,0 +1,601 @@
+# Persian translation for BlueProximity package.
+# Copyright (C) 2008 THE BlueProximity'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the BlueProximity package.
+# Ali Sattari <ali.sattari@gmail.com>, 2008.
+# crims0n <crims0n@minios.dev>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: blueproximity 1.4.0\n"
+"Report-Msgid-Bugs-To: support@minios.dev\n"
+"POT-Creation-Date: 2025-07-18 14:46+0300\n"
+"PO-Revision-Date: 2025-07-18 14:46+0300\n"
+"Last-Translator: crims0n <crims0n@minios.dev>\n"
+"Language-Team: Persian <fa@li.org>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: proximity.py:786
+msgid ""
+"\n"
+"        BlueProximity is free software; you can redistribute it and/or "
+"modify it\n"
+"        under the terms of the GNU General Public License as published by "
+"the\n"
+"        Free Software Foundation; either version 2 of the License, or\n"
+"        (at your option) any later version.\n"
+"\n"
+"        BlueProximity is distributed in the hope that it will be useful, "
+"but\n"
+"        WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"
+"        See the GNU General Public License for more details.\n"
+"\n"
+"        You should have received a copy of the GNU General Public License\n"
+"        along with BlueProximity; if not, write to the\n"
+"\n"
+"        Free Software Foundation, Inc.,\n"
+"        59 Temple Place, Suite 330,\n"
+"        Boston, MA  02111-1307  USA\n"
+"        "
+msgstr ""
+"\n"
+"        BlueProximity یک نرم‌افزار آزاد است؛ شما می‌توانید آن را بازتوزیع و/یا "
+"تغییر دهید\n"
+"        تحت شرایط «مجوز عمومی همگانی گنو» که توسط «بنیاد نرم‌افزار آزاد» منتشر شده است؛\n"
+"        یا نسخه ۲ مجوز، یا\n"
+"        (به انتخاب شما) هر نسخه بعدی.\n"
+"\n"
+"        BlueProximity به امید مفید بودن توزیع شده است، اما\n"
+"        بدون هیچ گونه ضمانت؛ حتی بدون ضمانت ضمنی\n"
+"        بازرگانی یا تناسب برای یک هدف خاص.\n"
+"        برای جزئیات بیشتر به «مجوز عمومی همگانی گنو» مراجعه کنید.\n"
+"\n"
+"        شما باید یک نسخه از «مجوز عمومی همگانی گنو» را\n"
+"        همراه با BlueProximity دریافت کرده باشید؛ در غیر این صورت، به آدرس زیر بنویسید:\n"
+"\n"
+"        Free Software Foundation, Inc.,\n"
+"        59 Temple Place, Suite 330,\n"
+"        Boston, MA  02111-1307  USA\n"
+"        "
+
+#: proximity.py:1160
+msgid ""
+"\n"
+"Simulation Mode (locking disabled)"
+msgstr ""
+"\n"
+"حالت شبیه‌سازی (قفل کردن غیر فعال است)"
+
+#: proximity.py:1130
+msgid " max: "
+msgstr "حداکثر:"
+
+#: proximity.py:1131
+msgid " state: "
+msgstr "حالت:"
+
+#: proximity.py:1666
+#, python-format
+msgid "'%s' is not a valid config file: %s"
+msgstr "'%s' یک فایل پیکربندی معتبر نیست: %s"
+
+#: proximity.py:1519 proximity.py:1522 proximity.py:1536 proximity.py:1539
+#: proximity.py:1549 proximity.py:1550
+#, python-format
+msgid ""
+"A command for %s has been skipped because the former command did not finish "
+"yet."
+msgstr "یک دستور برای %s رد شد زیرا دستور قبلی هنوز به پایان نرسیده بود."
+
+#: proximity.py:524 proximity.py:584
+#, python-format
+msgid "A configuration file with the name '%s' already exists."
+msgstr "یک فایل پیکربندی با نام '%s' از قبل وجود دارد."
+
+#: proximity.py:476
+msgid "About"
+msgstr "درباره"
+
+#: proximity.glade:886
+msgid "Action commands"
+msgstr "دستورات اقدام"
+
+#: proximity.py:142
+msgid "BLE device scanning will be disabled."
+msgstr "اسکن دستگاه BLE غیرفعال خواهد شد."
+
+#: proximity.py:1393
+msgid "BLE scan with Bleak failed: {}"
+msgstr "اسکن BLE با Bleak ناموفق بود: {}"
+
+#: proximity.py:1403
+msgid "Bleak library not found, skipping BLE scan."
+msgstr "کتابخانه Bleak پیدا نشد، اسکن BLE رد شد."
+
+#: proximity.glade:169
+msgid "BlueProximity Preferences"
+msgstr "ترجیحات BlueProximity"
+
+#: proximity.py:437
+msgid "Channel"
+msgstr "کانال"
+
+#: proximity.py:1372
+msgid "Classic Bluetooth scan failed: {}"
+msgstr "اسکن بلوتوث کلاسیک ناموفق بود: {}"
+
+#: proximity.glade:1055
+msgid ""
+"Command _interval:\n"
+"(sec.)"
+msgstr ""
+"وقفه _دستور:\n"
+"(ثانیه)"
+
+#: proximity.py:1228
+msgid "Could not open logfile '{}' for writing."
+msgstr "امکان باز کردن فایل گزارش '{}' برای نوشتن وجود نداشت."
+
+#: proximity.py:1401
+msgid "Could not run Bleak scan: {}"
+msgstr "امکان اجرای اسکن Bleak وجود ندارد: {}"
+
+#: proximity.glade:8
+msgid "Create new configuration"
+msgstr "ایجاد پیکربندی جدید"
+
+#: proximity.py:1683
+msgid "Creating new configuration."
+msgstr "در حال ایجاد پیکربندی جدید."
+
+#: proximity.py:1158
+msgid "Current State: "
+msgstr "وضعیت فعلی:"
+
+#: proximity.glade:674
+msgid "D_istance:"
+msgstr "ف_اصله:"
+
+#: proximity.glade:660
+msgid "D_uration (sec.):"
+msgstr "م_دت (ثانیه):"
+
+#: proximity.glade:246
+msgid "Delete Configuration"
+msgstr "حذف پیکربندی"
+
+#: proximity.py:1157
+msgid "Detected Distance: "
+msgstr "فاصله کشف شده:"
+
+#: proximity.py:1047
+msgid "Device scan finished."
+msgstr "اسکن دستگاه به پایان رسید."
+
+#: proximity.glade:716
+msgid "Distance:"
+msgstr "فاصله:"
+
+#: proximity.py:700
+#, python-format
+msgid "Do you really want to delete the configuration '%s'?"
+msgstr "آیا واقعاً می‌خواهید پیکربندی '%s' را حذف کنید؟"
+
+#: proximity.glade:688
+msgid "Dur_ation (sec.):"
+msgstr "مد_ت (ثانیه):"
+
+#: proximity.py:1639
+#, python-format
+msgid "Error migrating legacy configuration: %s"
+msgstr "خطا در انتقال پیکربندی قدیمی: %s"
+
+#: proximity.glade:972
+msgid "F_acility"
+msgstr "و_سیله"
+
+#: proximity.glade:941
+msgid "File_name"
+msgstr "نام _فایل"
+
+#: proximity.py:1625
+#, python-format
+msgid "Found legacy configuration file: %s"
+msgstr "فایل پیکربندی قدیمی پیدا شد: %s"
+
+#: proximity.py:1343
+msgid "Initialized..."
+msgstr "مقداردهی اولیه شد..."
+
+#: proximity.glade:901
+msgid "L_ocking command:"
+msgstr "دستور _قفل کردن:"
+
+#: proximity.py:762
+msgid "Leave it - it's locked, come back - it's back too..."
+msgstr "ترکش کن - قفل شده، برگرد - اینهم برگشته..."
+
+#: proximity.py:1636
+#, python-format
+msgid ""
+"Legacy configuration not migrated because a file already exists at the "
+"destination: %s"
+msgstr ""
+"پیکربندی قدیمی منتقل نشد زیرا فایلی از قبل در مقصد وجود دارد: %s"
+
+#: proximity.glade:840
+msgid "Locking"
+msgstr "قفل کردن"
+
+#: proximity.glade:1025
+msgid "Logging"
+msgstr "ثبت گزارش"
+
+#: proximity.py:427
+msgid "MAC"
+msgstr "MAC"
+
+#: proximity.glade:481
+msgid "MAC _Address"
+msgstr "_نشانی MAC"
+
+#: proximity.glade:741
+msgid "Measured atm"
+msgstr "در حال حاضر اندازه‌گیری شده"
+
+#: proximity.py:431
+msgid "Name"
+msgstr "نام"
+
+#: proximity.glade:225
+msgid "New Configuration"
+msgstr "پیکربندی جدید"
+
+#: proximity.py:1502
+msgid "No connection found, trying to establish one..."
+msgstr "اتصالی پیدا نشد، در تلاش برای برقراری ارتباط..."
+
+#: proximity.py:1045
+msgid "No devices found."
+msgstr "هیچ دستگاهی یافت نشد."
+
+#: proximity.py:465
+msgid "Pause"
+msgstr "مکث"
+
+#: proximity.py:105
+msgid "Please make sure the ConfigObject package for python is installed."
+msgstr "لطفا اطمینان حاصل کنید که بسته ConfigObject برای پایتون نصب شده است."
+
+#: proximity.py:95
+msgid ""
+"Please make sure the GI bindings for AyatanaAppIndicator3 are installed."
+msgstr "لطفا اطمینان حاصل کنید که ملزومات GI برای AyatanaAppIndicator3 نصب شده‌اند."
+
+#: proximity.py:85
+msgid "Please make sure the GObject bindings for python are installed."
+msgstr "لطفا اطمینان حاصل کنید که ملزومات GObject برای پایتون نصب شده‌اند."
+
+#: proximity.py:150 proximity.py:160
+msgid "Please make sure the GTK3 bindings for python are installed."
+msgstr "لطفا اطمینان حاصل کنید که ملزومات GTK3 برای پایتون نصب شده‌اند."
+
+#: proximity.py:170
+msgid "Please make sure the Glade3 bindings for python are installed."
+msgstr "لطفا اطمینان حاصل کنید که ملزومات Glade3 برای پایتون نصب شده‌اند."
+
+#: proximity.py:135
+msgid ""
+"Please make sure the bluetooth bindings for python as well as bluez are "
+"installed."
+msgstr ""
+"لطفا اطمینان حاصل کنید که ملزومات bluetooth برای پایتون به همراه bluez نصب "
+"شده‌اند."
+
+#: proximity.glade:358
+msgid "Please note that the device should already be paired!"
+msgstr "لطفا توجه داشته باشید که دستگاه باید قبلاً جفت شده باشد!"
+
+#: proximity.py:454
+msgid "Preferences"
+msgstr "ترجیحات"
+
+#: proximity.glade:1041
+msgid "Pro_ximity command:"
+msgstr "دستور ف_اصله:"
+
+#: proximity.py:491
+msgid "Quit"
+msgstr "خروج"
+
+#: proximity.glade:519
+msgid "RFCOMM C_hannel"
+msgstr "ک_انال RFCOMM"
+
+#: proximity.glade:267
+msgid "Rename Configuration"
+msgstr "تغییر نام پیکربندی"
+
+#: proximity.glade:1247
+msgid "Rename configuration"
+msgstr "تغییر نام پیکربندی"
+
+#: proximity.glade:1304
+msgid ""
+"Renaming the configuration will change the name of the config file on the "
+"disk."
+msgstr ""
+"تغییر نام پیکربندی، نام فایل پیکربندی را روی دیسک تغییر خواهد داد."
+
+#: proximity.py:1059 proximity.py:1093 proximity.glade:572
+msgid "Sca_n channels on device"
+msgstr "_پویش کانال‌های دستگاه"
+
+#: proximity.py:967 proximity.py:993
+msgid "Scanning"
+msgstr "در حال پویش"
+
+#: proximity.py:1376
+msgid "Scanning for BLE devices with Bleak..."
+msgstr "در حال اسکن دستگاه‌های BLE با Bleak..."
+
+#: proximity.py:1365
+msgid "Scanning for classic Bluetooth devices..."
+msgstr "در حال اسکن دستگاه‌های بلوتوث کلاسیک..."
+
+#: proximity.glade:343
+msgid "Scanning..."
+msgstr "در حال پویش..."
+
+#: proximity.glade:305
+msgid "Select from _detected devices:"
+msgstr "از بین دستگاه‌های _پیدا شده انتخاب کنید:"
+
+#: proximity.glade:189
+msgid "Selected Confi_guration"
+msgstr "پیکربندی _انتخاب شده"
+
+#: proximity.py:988
+msgid "Starting device scan..."
+msgstr "شروع اسکن دستگاه..."
+
+#: proximity.py:441
+msgid "State"
+msgstr "وضعیت"
+
+#: proximity.py:1158
+msgid "Status: "
+msgstr "وضعیت:"
+
+#: proximity.py:1073
+msgid "Stop sca_nning"
+msgstr "توقف _پویش"
+
+#: proximity.py:1634
+#, python-format
+msgid "Successfully migrated legacy configuration to: %s"
+msgstr "پیکربندی قدیمی با موفقیت به: %s منتقل شد"
+
+#: proximity.py:546 proximity.py:730
+#, python-format
+msgid "The configfile '%s' could not be deleted."
+msgstr "فایل پیکربندی '%s' قابل حذف نبود."
+
+#: proximity.py:693
+msgid "The last configuration file cannot be deleted."
+msgstr "آخرین فایل پیکربندی را نمی‌توان حذف کرد."
+
+#: proximity.glade:65
+msgid ""
+"The new configuration will be created as a copy of the current "
+"configuration. Please change the according values afterwards."
+msgstr ""
+"پیکربندی جدید به عنوان یک کپی از پیکربندی فعلی ایجاد خواهد شد. لطفا مقادیر مربوطه را بعداً تغییر دهید."
+
+#: proximity.py:94
+msgid "The program cannot import the module AyatanaAppIndicator3."
+msgstr "برنامه قادر به وارد کردن ماژول AyatanaAppIndicator3 نیست."
+
+#: proximity.py:169
+msgid "The program cannot import the module Builder (former glade)."
+msgstr "برنامه قادر به وارد کردن ماژول Builder (Glade سابق) نیست."
+
+#: proximity.py:104
+msgid "The program cannot import the module ConfigObj or Validator."
+msgstr "برنامه قادر به وارد کردن ماژول ConfigObj یا Validator نیست."
+
+#: proximity.py:159
+msgid "The program cannot import the module GdkPixbuf."
+msgstr "برنامه قادر به وارد کردن ماژول GdkPixbuf نیست."
+
+#: proximity.py:134
+msgid "The program cannot import the module bluetooth."
+msgstr "برنامه قادر به وارد کردن ماژول bluetooth نیست."
+
+#: proximity.py:84
+msgid "The program cannot import the module gobject."
+msgstr "برنامه قادر به وارد کردن ماژول gobject نیست."
+
+#: proximity.py:149
+msgid "The program cannot import the module pygtk."
+msgstr "برنامه قادر به وارد کردن ماژول pygtk نیست."
+
+#: proximity.py:1077
+msgid ""
+"The scanning process tries to connect to each of the 30 possible ports. This "
+"will take some time and you should watch your bluetooth device for any "
+"actions to be taken. If possible click on accept/connect. If you are asked "
+"for a pin your device was not paired properly before, see the manual on how "
+"to fix this."
+msgstr ""
+"فرآیند اسکن تلاش می‌کند تا به هر یک از ۳۰ پورت ممکن متصل شود. این کار کمی "
+"زمان می‌برد و شما باید دستگاه بلوتوث خود را برای هر گونه اقدام لازم زیر "
+"نظر داشته باشید. در صورت امکان روی قبول/اتصال کلیک کنید. اگر از شما پین "
+"خواسته شد، دستگاه شما قبلاً به درستی جفت نشده است؛ برای رفع این مشکل به "
+"راهنما مراجعه کنید."
+
+#: proximity.py:143
+msgid "To enable it on Debian/Ubuntu, type:"
+msgstr "برای فعال‌سازی در Debian/Ubuntu، تایپ کنید:"
+
+#: proximity.py:1381
+msgid "Unknown BLE Device"
+msgstr "دستگاه BLE ناشناخته"
+
+#: proximity.glade:728
+msgid "Unlocking"
+msgstr "باز کردن قفل"
+
+#: proximity.py:1664 proximity.py:1684
+#, python-format
+msgid "Using config file '%s'."
+msgstr "در حال استفاده از فایل پیکربندی '%s'."
+
+#: proximity.py:141
+msgid "Warning: The 'bleak' library is not installed."
+msgstr "هشدار: کتابخانه 'bleak' نصب نشده است."
+
+#: proximity.py:512
+msgid "You must enter a name for the configuration."
+msgstr "باید نامی برای پیکربندی وارد کنید."
+
+#: proximity.py:570
+msgid "You must enter a name for the new configuration."
+msgstr "باید نامی برای پیکربندی جدید وارد کنید."
+
+#: proximity.glade:1200
+msgid "_About"
+msgstr "_درباره"
+
+#: proximity.glade:627
+msgid "_Bluetooth Device"
+msgstr "_دستگاه بلوتوث"
+
+#: proximity.glade:106 proximity.glade:1345
+msgid "_Cancel"
+msgstr "_لغو"
+
+#: proximity.glade:1220
+msgid "_Close"
+msgstr "_بستن"
+
+#: proximity.glade:86
+msgid "_Create"
+msgstr "_ایجاد"
+
+#: proximity.glade:646
+msgid "_Distance:"
+msgstr "_فاصله:"
+
+#: proximity.glade:952
+msgid "_File"
+msgstr "_فایل"
+
+#: proximity.glade:1153
+msgid "_Locking"
+msgstr "_قفل کردن"
+
+#: proximity.glade:32
+msgid "_Name of new configuration:"
+msgstr "نا_م پیکربندی جدید:"
+
+#: proximity.glade:1271
+msgid "_New name of configuration:"
+msgstr "_نام جدید پیکربندی:"
+
+#: proximity.glade:867
+msgid "_Proximity Details"
+msgstr "_جزئیات مجاورت"
+
+#: proximity.glade:1325
+msgid "_Rename"
+msgstr "_تغییر نام"
+
+#: proximity.glade:699
+msgid "_Reset Min/Max"
+msgstr "_بازنشانی حداقل/حداکثر"
+
+#: proximity.glade:402
+msgid "_Scan for devices"
+msgstr "_اسکن برای دستگاه‌ها"
+
+#: proximity.glade:1006
+msgid "_Syslog"
+msgstr "_Syslog"
+
+#: proximity.glade:915
+msgid "_Unlocking command:"
+msgstr "_دستور باز کردن قفل:"
+
+#: proximity.glade:447
+msgid "_Use selected device"
+msgstr "_استفاده از دستگاه انتخاب شده"
+
+#: proximity.py:1148 proximity.py:1169 proximity.py:1572
+msgid "active"
+msgstr "فعال"
+
+#: proximity.py:1301
+msgid "closed or denied"
+msgstr "بسته یا رد شد"
+
+#: proximity.py:86 proximity.py:96 proximity.py:106 proximity.py:136
+#: proximity.py:151 proximity.py:161 proximity.py:171
+msgid "e.g. with Debian/Ubuntu, type"
+msgstr "مثلاً در دبیان/اوبونتو، تایپ کنید"
+
+#: proximity.py:1330 proximity.py:1557 proximity.py:1568 proximity.py:1584
+msgid "gone"
+msgstr "رفته"
+
+#: proximity.py:1537 proximity.py:1539
+msgid "locking"
+msgstr "در حال قفل کردن"
+
+#: proximity.py:1129
+msgid "min: "
+msgstr "حداقل:"
+
+#: proximity.glade:754
+msgid "min: - max: - state: -"
+msgstr "حداقل: - حداکثر: - وضعیت: -"
+
+#: proximity.glade:205
+msgid "no entries"
+msgstr "بدون ورودی"
+
+#: proximity.py:1549 proximity.py:1551
+msgid "proximity"
+msgstr "مجاورت"
+
+#: proximity.py:1563
+msgid "running..."
+msgstr "در حال اجرا..."
+
+#: proximity.py:1529
+msgid "screen is locked"
+msgstr "صفحه قفل شده است"
+
+#: proximity.py:1512
+msgid "screen is unlocked"
+msgstr "صفحه باز شده است"
+
+#: proximity.py:343
+msgid "started."
+msgstr "شروع شد."
+
+#: proximity.py:1114
+msgid "stopped."
+msgstr "متوقف شد."
+
+#: proximity.py:1520 proximity.py:1522
+msgid "unlocking"
+msgstr "در حال باز کردن قفل"
+
+#: proximity.py:1299
+msgid "usable"
+msgstr "قابل استفاده"

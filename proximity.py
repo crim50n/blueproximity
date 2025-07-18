@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 
-SW_VERSION = '1.3.3'
+SW_VERSION = '1.4.0'
 
-# Add security to your desktop by automatically locking and unlocking 
-# the screen when you and your phone leave/enter the desk. 
+# Add security to your desktop by automatically locking and unlocking
+# the screen when you and your phone leave/enter the desk.
 # Think of a proximity detector for your mobile phone via bluetooth.
 # requires external bluetooth util hcitool to run
 # (which makes it unix only at this time)
@@ -12,7 +12,9 @@ SW_VERSION = '1.3.3'
 # Needed python extensions:
 #  ConfigObj (python3-configobj)
 #  PyGTK3 (python3-gi)
-#  Bluetooth (python-bluez)
+#  Bluetooth (python3-bluez)
+#  Bleak (python3-bleak)
+#  Ayatana AppIndicator (gir1.2-ayatanaappindicator3-0.1)
 
 # copyright by Lars Friedrichs <larsfriedrichs@gmx.de>
 # this source is licensed under the GPL.
@@ -43,46 +45,32 @@ import time
 # blueproximity
 import struct
 
-# Get the local directory since we are not installing anything
+# ADDED FOR BLE SUPPORT
+import asyncio
+try:
+    from bleak import BleakScanner
+    IMPORT_BLEAK = True
+except ImportError:
+    IMPORT_BLEAK = False
+# END OF ADDED IMPORTS
+
+# Get the local directory for language files if running locally
 if dist_path == './':
     dist_path = os.getcwd() + '/'
-
-# Init the list of languages to support
 local_path = dist_path + 'LANG/'
-langs = []
 
-# Check the default locale
-lc, encoding = locale.getdefaultlocale()
-
-if lc:
-    # If we have a default, it's the first in the list
-    langs = [lc]
-
-# Now lets get all of the supported languages on the system
-language = os.environ.get('LANGUAGE', None)
-
-if language:
-    # Language comes back something like en_CA:en_US:en_GB:en
-    # on linux systems, on Win32 it's nothing, so we need to
-    # split it up into a list
-    langs += language.split(":")
-
-# Now add on to the back of the list the translations that we
-# know that we have, our defaults
-langs += ["en"]
-
-# Now langs is a list of all of the languages that we are going
-# to try to use.  First we check the default, then what the system
-# told us, and finally the 'known' list
+# Set up gettext
+# These lines are all that's needed.
+# gettext will automatically use system environment variables (LANG, LANGUAGE, etc.)
+# to find the best available language.
 gettext.bindtextdomain(APP_NAME, local_path)
 gettext.textdomain(APP_NAME)
 
-# Get the language to use
-lang = gettext.translation(APP_NAME, local_path, languages=langs, fallback=True)
+# The translation() function, without a 'languages' list, does the right thing automatically.
+# It returns a translation object that can be used to translate strings.
+lang = gettext.translation(APP_NAME, localedir=local_path, fallback=True)
 
-# Install the language, map _() (which we marked our
-# strings to translate with) to self.lang.gettext() which will
-# translate them.
+# Install the translation function as _() for the entire application
 _ = lang.gettext
 
 # now the imports from external packages
@@ -91,21 +79,22 @@ try:
 
     gi.require_version('Gtk', '3.0')
     from gi.repository import GObject as gobject
+    from gi.repository import GLib as glib
 except:
     print(_("The program cannot import the module gobject."))
     print(_("Please make sure the GObject bindings for python are installed."))
-    print(_("e.g. with Ubuntu Linux, type"))
-    print(_(" sudo apt-get install python3-gobject"))
+    print(_("e.g. with Debian/Ubuntu, type"))
+    print(" sudo apt-get install python3-gobject")
     sys.exit(1)
 
 try:
-    gi.require_version('XApp', '1.0')
-    from gi.repository import XApp
-except:
-    print(_("The program cannot import the module XApp."))
-    print(_("Please make sure the GI bindings for XApp are installed."))
-    print(_("e.g. with Ubuntu Linux, type"))
-    print(_(" sudo apt-get install gir1.2-xapp-1.0"))
+    gi.require_version('AyatanaAppIndicator3', '0.1')
+    from gi.repository import AyatanaAppIndicator3 as AppIndicator
+except (ImportError, ValueError):
+    print(_("The program cannot import the module AyatanaAppIndicator3."))
+    print(_("Please make sure the GI bindings for AyatanaAppIndicator3 are installed."))
+    print(_("e.g. with Debian/Ubuntu, type"))
+    print(" sudo apt-get install gir1.2-ayatanaappindicator3-0.1")
     sys.exit(1)
 
 try:
@@ -114,8 +103,8 @@ try:
 except:
     print(_("The program cannot import the module ConfigObj or Validator."))
     print(_("Please make sure the ConfigObject package for python is installed."))
-    print(_("e.g. with Ubuntu Linux, type"))
-    print(_(" sudo apt-get install python3-configobj"))
+    print(_("e.g. with Debian/Ubuntu, type"))
+    print(" sudo apt-get install python3-configobj")
     sys.exit(1)
 
 IMPORT_BT = 0
@@ -144,17 +133,23 @@ except:
 if (IMPORT_BT != 2):
     print(_("The program cannot import the module bluetooth."))
     print(_("Please make sure the bluetooth bindings for python as well as bluez are installed."))
-    print(_("e.g. with Ubuntu Linux, type"))
-    print(_(" sudo apt-get install python3-bluez"))
+    print(_("e.g. with Debian/Ubuntu, type"))
+    print(" sudo apt-get install python3-bluez")
     sys.exit(1)
+
+if not IMPORT_BLEAK:
+    print(_("Warning: The 'bleak' library is not installed."))
+    print(_("BLE device scanning will be disabled."))
+    print(_("To enable it on Debian/Ubuntu, type:"))
+    print(" sudo apt-get install python3-bleak")
 
 try:
     from gi.repository import Gtk as gtk
 except:
     print(_("The program cannot import the module pygtk."))
     print(_("Please make sure the GTK3 bindings for python are installed."))
-    print(_("e.g. with Ubuntu Linux, type"))
-    print(_(" sudo apt-get install python3-gi"))
+    print(_("e.g. with Debian/Ubuntu, type"))
+    print(" sudo apt-get install python3-gi")
     sys.exit(1)
 
 try:
@@ -163,8 +158,8 @@ try:
 except:
     print(_("The program cannot import the module GdkPixbuf."))
     print(_("Please make sure the GTK3 bindings for python are installed."))
-    print(_("e.g. with Ubuntu Linux, type"))
-    print(_(" sudo apt-get install python3-gi"))
+    print(_("e.g. with Debian/Ubuntu, type"))
+    print(" sudo apt-get install python3-gi")
     sys.exit(1)
 
 try:
@@ -173,8 +168,8 @@ try:
 except:
     print(_("The program cannot import the module Builder (former glade)."))
     print(_("Please make sure the Glade3 bindings for python are installed."))
-    print(_("e.g. with Ubuntu Linux, type"))
-    print(_(" sudo apt-get install python3-gi"))
+    print(_("e.g. with Debian/Ubuntu, type"))
+    print(" sudo apt-get install python3-gi")
     sys.exit(1)
 
 # Setup config file specs and defaults
@@ -186,15 +181,15 @@ conf_specs = [
     'lock_duration=integer(0,120,default=6)',
     'unlock_distance=integer(0,127,default=4)',
     'unlock_duration=integer(0,120,default=1)',
-    'lock_command=string(default=''gnome-screensaver-command -l'')',
-    'unlock_command=string(default=''gnome-screensaver-command -d'')',
-    'proximity_command=string(default=''gnome-screensaver-command -p'')',
+    'lock_command=string(default="gnome-screensaver-command -l")',
+    'unlock_command=string(default="gnome-screensaver-command -d")',
+    'proximity_command=string(default="gnome-screensaver-command -p")',
     'proximity_interval=integer(5,600,default=60)',
     'buffer_size=integer(1,255,default=1)',
     'log_to_syslog=boolean(default=True)',
-    'log_syslog_facility=string(default=''local7'')',
+    'log_syslog_facility=string(default="local7")',
     'log_to_file=boolean(default=False)',
-    'log_filelog_filename=string(default=''' + os.getenv('HOME') + '/blueproximity.log'')'
+    'log_filelog_filename=string(default="' + os.getenv('HOME') + '/blueproximity.log")'
 ]
 
 # The icon used at normal operation and in the info dialog.
@@ -232,9 +227,16 @@ class ProximityGUI(object):
         self.gone_live = False
 
         # Set the Glade file
-        self.gladefile = dist_path + "proximity3.glade"
-        self.wTree = gtk.glade.new_from_file(self.gladefile)
-
+        self.gladefile = dist_path + "proximity.glade"
+        
+        # Create a Gtk.Builder instance
+        self.wTree = gtk.Builder()
+        # We do NOT set the translation domain, as we will do it manually.
+        # self.wTree.set_translation_domain(APP_NAME)
+        
+        # Load the UI from the file
+        self.wTree.add_from_file(self.gladefile)
+        
         # Create our dictionary and connect it
         dic = {"on_btnInfo_clicked": self.aboutPressed,
                "on_btnClose_clicked": self.btnClose_clicked,
@@ -260,7 +262,6 @@ class ProximityGUI(object):
         self.window = self.wTree.get_object("MainWindow")
         if self.window:
             self.window.connect("delete_event", self.btnClose_clicked)
-        from gi.repository import GdkPixbuf
         pixbuf_img = GdkPixbuf.Pixbuf.new_from_file(dist_path + icon_base)
         self.window.set_icon(pixbuf_img)
         self.proxi = configs[0][2]
@@ -269,6 +270,7 @@ class ProximityGUI(object):
         self.pauseMode = False
         self.lastMAC = ''
         self.scanningChannels = False
+        self.scan_animation_timer = None
 
         # Get the New Config Window, and connect the "destroy" event
         self.windowNew = self.wTree.get_object("createNewWindow")
@@ -286,27 +288,30 @@ class ProximityGUI(object):
         self.tree.set_model(self.model)
         self.selection_mode = gtk.SelectionMode.SINGLE
         self.tree.get_selection().set_mode(self.selection_mode)
-        colLabel = gtk.TreeViewColumn(_('MAC'), gtk.CellRendererText(), text=0)
-        colLabel.set_resizable(True)
-        colLabel.set_sort_column_id(0)
-        self.tree.append_column(colLabel)
-        colLabel = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(), text=1)
-        colLabel.set_resizable(True)
-        colLabel.set_sort_column_id(1)
-        self.tree.append_column(colLabel)
+        colLabelMac = gtk.TreeViewColumn('MAC', gtk.CellRendererText(), text=0)
+        colLabelMac.set_resizable(True)
+        colLabelMac.set_sort_column_id(0)
+        self.tree.append_column(colLabelMac)
+        colLabelName = gtk.TreeViewColumn('Name', gtk.CellRendererText(), text=1)
+        colLabelName.set_resizable(True)
+        colLabelName.set_sort_column_id(1)
+        self.tree.append_column(colLabelName)
 
         # Prepare the channel/state table
         self.modelScan = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.treeChan = self.wTree.get_object("treeScanChannelResult")
         self.treeChan.set_model(self.modelScan)
-        colLabel = gtk.TreeViewColumn(_('Channel'), gtk.CellRendererText(), text=0)
-        colLabel.set_resizable(True)
-        colLabel.set_sort_column_id(0)
-        self.treeChan.append_column(colLabel)
-        colLabel = gtk.TreeViewColumn(_('State'), gtk.CellRendererText(), text=1)
-        colLabel.set_resizable(True)
-        colLabel.set_sort_column_id(1)
-        self.treeChan.append_column(colLabel)
+        colLabelChan = gtk.TreeViewColumn('Channel', gtk.CellRendererText(), text=0)
+        colLabelChan.set_resizable(True)
+        colLabelChan.set_sort_column_id(0)
+        self.treeChan.append_column(colLabelChan)
+        colLabelState = gtk.TreeViewColumn('State', gtk.CellRendererText(), text=1)
+        colLabelState.set_resizable(True)
+        colLabelState.set_sort_column_id(1)
+        self.treeChan.append_column(colLabelState)
+
+        # Now that all widgets including TreeView columns exist, we call the translation function.
+        self._manually_translate_ui()
 
         # Show the current settings
         self.configs = configs
@@ -316,7 +321,6 @@ class ProximityGUI(object):
         self.readSettings()
 
         # this is the gui timer
-        from gi.repository import GLib as glib
         self.timer = glib.timeout_add(1000, self.updateState)
         # fixme: this will execute the proximity command at the given interval - is now not working
         self.timer2 = glib.timeout_add(1000 * int(self.config['proximity_interval']), self.proximityCommand)
@@ -326,16 +330,11 @@ class ProximityGUI(object):
             self.window.show()
 
         # Prepare icon
-        self.icon = XApp.StatusIcon()
-        self.icon.set_tooltip_text(_("BlueProximity starting..."))
-        self.icon.set_icon_name(dist_path + icon_error)
-
-        # self.icon.connect('activate', self.showWindow)
-        # self.icon.connect('popup-menu', self.popupMenu, self.popupmenu)
-        self.icon.connect('button-release-event', self.make_popupmenu)
-        # self.icon.popup_menu(self.popupmenu, 0, 0, 0, 0, 0)
-
-        self.icon.set_visible(True)
+        self.icon = AppIndicator.Indicator.new(APP_NAME, dist_path + icon_error,
+                                                 AppIndicator.IndicatorCategory.APPLICATION_STATUS)
+        self.icon.set_status(AppIndicator.IndicatorStatus.ACTIVE)
+        self.popupmenu = self._create_indicator_menu()
+        self.icon.set_menu(self.popupmenu)
 
         # now the control may fire change events
         self.gone_live = True
@@ -343,32 +342,161 @@ class ProximityGUI(object):
         for config in self.configs:
             config[2].logger.log_line(_('started.'))
 
-        # Setup the popup menu and associated callbacks
-    def make_popupmenu(self, first, second, third, button, event_time, unknown):
-        if button == 1:
-            self.showWindow(self.icon)
-        if button == 3:
-            self.popupmenu = gtk.Menu()
-            menuItem = gtk.ImageMenuItem.new_from_stock(stock_id=gtk.STOCK_PREFERENCES)
-            menuItem.connect('activate', self.showWindow)
-            self.popupmenu.append(menuItem)
-            menuItem = gtk.ImageMenuItem.new_from_stock(stock_id=gtk.STOCK_MEDIA_PAUSE)
-            menuItem.connect('activate', self.pausePressed)
-            self.popupmenu.append(menuItem)
-            menuItem = gtk.ImageMenuItem.new_from_stock(stock_id=gtk.STOCK_ABOUT)
-            menuItem.connect('activate', self.aboutPressed)
-            self.popupmenu.append(menuItem)
-            # menuItem = gtk.MenuItem()
-            menuItem = gtk.SeparatorMenuItem()
-            self.popupmenu.append(menuItem)
-            menuItem = gtk.ImageMenuItem.new_from_stock(stock_id=gtk.STOCK_QUIT)
-            menuItem.connect('activate', self.quit)
-            self.popupmenu.append(menuItem)
-            # params = "params are:\nfirst:{0}\nsecond:{1}\nthird:{2}\nbutton:{3}\nevent_time:{4}\nunknown:{5}"
-            # params = params.format(first, second, third, button, event_time, unknown)
-            # print(repr(params))
-            self.popupmenu.show_all()
-            self.popupmenu.popup(None, None, None, 3, button, event_time)
+    def _manually_translate_ui(self):
+        """
+        Applies translations manually to widgets.
+        This is a workaround for when Gtk.Builder's automatic translation fails.
+        """
+        
+        # List of widgets and their properties to translate: (widget_id, property_name)
+        widgets_to_translate = [
+            # Window Titles
+            ("MainWindow", "title"),
+            ("createNewWindow", "title"),
+            ("renameWindow", "title"),
+            
+            # Labels
+            ("label29", "label"), ("label30", "label"), ("label27", "label"),
+            ("label5", "label"), ("labelScanStatus", "label"), ("label7", "label"),
+            ("label6", "label"), ("label26", "label"),
+            ("labelBtnScanChannel", "label"), ("labDev", "label"), ("label11", "label"),
+            ("label12", "label"), ("label14", "label"), ("label15", "label"),
+            ("label18", "label"), ("label13", "label"), ("label16", "label"),
+            ("labState", "label"), ("label10", "label"), ("labSet", "label"),
+            ("label20", "label"), ("label21", "label"), ("label22", "label"),
+            ("labelFile", "label"), ("labelFacility", "label"), ("label23", "label"),
+            ("label24", "label"), ("label25", "label"), ("labLock", "label"),
+            ("label31", "label"), ("label32", "label"),
+
+            # Buttons with simple labels
+            ("btnDlgNewDo", "label"), ("btnDlgNewCancel", "label"),
+            ("btnResetMinMax", "label"), ("btnClose", "label"),
+            ("btnDlgRenameDo", "label"), ("btnDlgRenameCancel", "label"),
+            
+            # Buttons with internal labels
+            ("btnScan", "internal_label"),
+            ("btnSelect", "internal_label"),
+            ("btnInfo", "internal_label"),
+            
+            # CheckButtons
+            ("checkFile", "label"),
+            ("checkSyslog", "label"),
+
+            # Tooltips
+            ("btnNew", "tooltip-text"),
+            ("btnDelete", "tooltip-text"),
+            ("btnRename", "tooltip-text"),
+        ]
+        
+        for widget_id, prop_name in widgets_to_translate:
+            widget = self.wTree.get_object(widget_id)
+            if not widget:
+                print(f"WARNING: Widget with ID '{widget_id}' not found for translation.")
+                continue
+            
+            original_text = ""
+            # Handle special cases like buttons with internal boxes
+            if prop_name == "internal_label":
+                try:
+                    box = widget.get_child()
+                    # Find the Gtk.Label widget inside the Gtk.Box
+                    internal_label = next(c for c in box.get_children() if isinstance(c, gtk.Label))
+                    original_text = internal_label.get_label()
+                    translated_text = _(original_text)
+                    if original_text != translated_text:
+                        internal_label.set_label(translated_text)
+                        # print(f"  - Translated internal_label of '{widget_id}': '{original_text}' -> '{translated_text}'")
+                except (TypeError, AttributeError, StopIteration):
+                     print(f"WARNING: Could not find internal label for '{widget_id}'.")
+            else:
+                # Standard property handling
+                if hasattr(widget, "get_property") and hasattr(widget, "set_property"):
+                    original_text = widget.get_property(prop_name)
+                    if original_text and isinstance(original_text, str):
+                        translated_text = _(original_text)
+                        if original_text != translated_text:
+                            widget.set_property(prop_name, translated_text)
+                            # print(f"  - Translated '{widget_id}'.'{prop_name}': '{original_text}' -> '{translated_text}'")
+
+        # Manually translate TreeView column headers
+        try:
+            tree_scan_result = self.wTree.get_object("treeScanResult")
+            if tree_scan_result:
+                col_mac = tree_scan_result.get_column(0)
+                if col_mac:
+                    col_mac.set_title(_("MAC"))
+                
+                col_name = tree_scan_result.get_column(1)
+                if col_name:
+                    col_name.set_title(_("Name"))
+
+            tree_scan_channel_result = self.wTree.get_object("treeScanChannelResult")
+            if tree_scan_channel_result:
+                col_chan = tree_scan_channel_result.get_column(0)
+                if col_chan:
+                    col_chan.set_title(_("Channel"))
+                
+                col_state = tree_scan_channel_result.get_column(1)
+                if col_state:
+                    col_state.set_title(_("State"))
+
+        except Exception as e:
+            print(f"WARNING: Could not translate TreeView columns. Error: {e}")
+
+    # Setup the popup menu
+    def _create_indicator_menu(self):
+        menu = gtk.Menu()
+
+        # Preferences
+        menuItem = gtk.MenuItem()
+        box = gtk.Box(orientation=gtk.Orientation.HORIZONTAL, spacing=6)
+        image = gtk.Image.new_from_icon_name("preferences-system", gtk.IconSize.MENU)
+        label = gtk.Label(label=_("Preferences"))
+        box.pack_start(image, False, False, 0)
+        box.pack_start(label, True, True, 0)
+        menuItem.add(box)
+        menuItem.connect('activate', self.showWindow)
+        menu.append(menuItem)
+
+        # Pause
+        menuItem = gtk.MenuItem()
+        box = gtk.Box(orientation=gtk.Orientation.HORIZONTAL, spacing=6)
+        image = gtk.Image.new_from_icon_name("media-playback-pause", gtk.IconSize.MENU)
+        label = gtk.Label(label=_("Pause"))
+        box.pack_start(image, False, False, 0)
+        box.pack_start(label, True, True, 0)
+        menuItem.add(box)
+        menuItem.connect('activate', self.pausePressed)
+        menu.append(menuItem)
+
+        # About
+        menuItem = gtk.MenuItem()
+        box = gtk.Box(orientation=gtk.Orientation.HORIZONTAL, spacing=6)
+        image = gtk.Image.new_from_icon_name("help-about", gtk.IconSize.MENU)
+        label = gtk.Label(label=_("About"))
+        box.pack_start(image, False, False, 0)
+        box.pack_start(label, True, True, 0)
+        menuItem.add(box)
+        menuItem.connect('activate', self.aboutPressed)
+        menu.append(menuItem)
+
+        # Separator
+        menuItem = gtk.SeparatorMenuItem()
+        menu.append(menuItem)
+
+        # Quit
+        menuItem = gtk.MenuItem()
+        box = gtk.Box(orientation=gtk.Orientation.HORIZONTAL, spacing=6)
+        image = gtk.Image.new_from_icon_name("application-exit", gtk.IconSize.MENU)
+        label = gtk.Label(label=_("Quit"))
+        box.pack_start(image, False, False, 0)
+        box.pack_start(label, True, True, 0)
+        menuItem.add(box)
+        menuItem.connect('activate', self.quit)
+        menu.append(menuItem)
+
+        menu.show_all()
+        return menu
 
     # Callback to just close and not destroy the rename config window
     def dlgRenameCancel_clicked(self, widget, data=None):
@@ -377,20 +505,23 @@ class ProximityGUI(object):
 
     # Callback to rename a config file.
     def dlgRenameDo_clicked(self, widget, data=None):
-        newconfig = self.wTree.get_widget("entryRenameName").get_text()
+        newconfig = self.wTree.get_object("entryRenameName").get_text()
         # check if something has been entered
         if newconfig == '':
-            dlg = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
-                                    _("You must enter a name for the configuration."))
+            dlg = gtk.MessageDialog(transient_for=self.window, modal=True, message_type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.OK,
+                                    text=_("You must enter a name for the configuration."))
             dlg.run()
             dlg.destroy()
             return 0
         # now check if that config already exists
-        newname = os.path.join(os.getenv('HOME'), '.blueproximity', newconfig + ".conf")
+        config_dir = os.path.join(os.getenv('HOME'), '.config', 'blueproximity')
+        if not os.path.exists(config_dir):
+            os.makedirs(config_dir, exist_ok=True)
+        newname = os.path.join(config_dir, newconfig + ".conf")
         try:
             os.stat(newname)
-            dlg = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
-                                    _("A configuration file with the name '%s' already exists.") % newname)
+            dlg = gtk.MessageDialog(transient_for=self.window, modal=True, message_type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.OK,
+                                    text=_("A configuration file with the name '%s' already exists.") % newname)
             dlg.run()
             dlg.destroy()
             return 0
@@ -431,23 +562,26 @@ class ProximityGUI(object):
 
     # Callback to create a config file.
     def dlgNewDo_clicked(self, widget, data=None):
-        newconfig = self.wTree.get_widget("entryNewName").get_text()
+        newconfig = self.wTree.get_object("entryNewName").get_text()
 
         # check if something has been entered
         if (newconfig == ''):
-            dlg = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
-                                    _("You must enter a name for the new configuration."))
+            dlg = gtk.MessageDialog(transient_for=self.window, modal=True, message_type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.OK,
+                                    text=_("You must enter a name for the new configuration."))
             dlg.run()
             dlg.destroy()
             return 0
 
         # now check if that config already exists
-        newname = os.path.join(os.getenv('HOME'), '.blueproximity', newconfig + ".conf")
+        config_dir = os.path.join(os.getenv('HOME'), '.config', 'blueproximity')
+        if not os.path.exists(config_dir):
+            os.makedirs(config_dir, exist_ok=True)
+        newname = os.path.join(config_dir, newconfig + ".conf")
 
         try:
             os.stat(newname)
-            dlg = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
-                                    _("A configuration file with the name '%s' already exists.") % newname)
+            dlg = gtk.MessageDialog(transient_for=self.window, modal=True, message_type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.OK,
+                                    text=_("A configuration file with the name '%s' already exists.") % newname)
             dlg.run()
             dlg.destroy()
             return 0
@@ -555,18 +689,18 @@ class ProximityGUI(object):
 
         # never delete the last config
         if len(self.configs) == 1:
-            dlg = gtk.MessageDialog(None, gtk.DialogFlags.MODAL, gtk.MessageType.ERROR, gtk.ButtonsType.OK,
-                                    _("The last configuration file cannot be deleted."))
+            dlg = gtk.MessageDialog(transient_for=self.window, modal=True, message_type=gtk.MessageType.ERROR, buttons=gtk.ButtonsType.OK,
+                                    text=_("The last configuration file cannot be deleted."))
             dlg.run()
             dlg.destroy()
             return 0
 
         # security question
-        dlg = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_YES_NO,
-                                _("Do you really want to delete the configuration '%s'.") % self.configname)
-        retval = dlg.run()
+        dlg = gtk.MessageDialog(transient_for=self.window, modal=True, message_type=gtk.MessageType.QUESTION, buttons=gtk.ButtonsType.YES_NO,
+                                text=_("Do you really want to delete the configuration '%s'?") % self.configname)
+        response = dlg.run()
         dlg.destroy()
-        if retval == gtk.RESPONSE_YES:
+        if response == gtk.ResponseType.YES:
 
             # ok, now stop the detection for that config
             self.proxi.Stop = True
@@ -579,9 +713,9 @@ class ProximityGUI(object):
 
             # change active config to the next one
             self.configs.sort()
-            self.configname = configs[0][0]
-            self.config = configs[0][1]
-            self.proxi = configs[0][2]
+            self.configname = self.configs[0][0]
+            self.config = self.configs[0][1]
+            self.proxi = self.configs[0][2]
 
             # update gui
             self.readSettings()
@@ -631,7 +765,8 @@ class ProximityGUI(object):
             u"Lars Friedrichs <LarsFriedrichs@gmx.de>",
             u"Tobias Jakobs",
             u"Zsolt Mazolt",
-            u"Rodrigo Gambra-Middleton (current fork maintainer) <rodrigo@tiktaalik.dev>"]
+            u"Rodrigo Gambra-Middleton <rodrigo@tiktaalik.dev>",
+            u"crims0n <crims0n@minios.dev>" ]
         translators = """Translators:
                            de Lars Friedrichs <LarsFriedrichs@gmx.de>
                            en Lars Friedrichs <LarsFriedrichs@gmx.de>
@@ -640,30 +775,30 @@ class ProximityGUI(object):
                            hu Kami <kamihir@freemail.hu>
                            it e633 <e633@users.sourceforge.net>
                            Prosper <prosper.nl@gmail.com>
-                           ru Alexey Lubimov
+                           ru Alexey Lubimov <avl@l14.ru>
                            sv Jan Braunisch <x@r6.se>
                            th Maythee Anegboonlap & pFz <null@llun.info>
-                         Former translators:
+Former translators:
                            fr Claude <f5pbl@users.sourceforge.net>
                            sv Alexander Jönsson <tp-sv@listor.tp-sv.se>
                            sv Daniel Nylander <dnylander@users.sourceforge.net>
                                     """
         blueproximity_license = _("""
-        BlueProximity is free software; you can redistribute it and/or modify it 
-        under the terms of the GNU General Public License as published by the 
-        Free Software Foundation; either version 2 of the License, or 
+        BlueProximity is free software; you can redistribute it and/or modify it
+        under the terms of the GNU General Public License as published by the
+        Free Software Foundation; either version 2 of the License, or
         (at your option) any later version.
 
-        BlueProximity is distributed in the hope that it will be useful, but 
-        WITHOUT ANY WARRANTY; without even the implied warranty of 
-        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+        BlueProximity is distributed in the hope that it will be useful, but
+        WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
         See the GNU General Public License for more details.
 
-        You should have received a copy of the GNU General Public License 
-        along with BlueProximity; if not, write to the 
+        You should have received a copy of the GNU General Public License
+        along with BlueProximity; if not, write to the
 
-        Free Software Foundation, Inc., 
-        59 Temple Place, Suite 330, 
+        Free Software Foundation, Inc.,
+        59 Temple Place, Suite 330,
         Boston, MA  02111-1307  USA
         """)
         about = gtk.AboutDialog()
@@ -685,15 +820,14 @@ class ProximityGUI(object):
     def pausePressed(self, widget, data=None):
         if self.pauseMode:
             self.pauseMode = False
-            for config in configs:
+            for config in self.configs:
                 config[2].dev_mac = config[2].lastMAC
                 config[2].Simulate = False
 
-            from gi.repository import GdkPixbuf
-            GdkPixbuf.Pixbuf.new_from_file(dist_path + icon_error)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(dist_path + icon_error)
         else:
             self.pauseMode = True
-            for config in configs:
+            for config in self.configs:
                 config[2].lastMAC = config[2].dev_mac
                 config[2].dev_mac = ''
                 config[2].Simulate = True
@@ -702,7 +836,7 @@ class ProximityGUI(object):
     # Helper function to set a ComboBox's value to value if that exists in the Combo's list
     # The value is not changed if the new value is not member of the list.
     # @param widget a gtkComboBox object
-    # @param value the value the gtkComboBox should be set to.    
+    # @param value the value the gtkComboBox should be set to.
     def setComboValue(self, widget, value):
         model = widget.get_model()
         for row in model:
@@ -785,7 +919,7 @@ class ProximityGUI(object):
     # Callback called by certain GUI elements if their values are changed.
     # We don't react if we are still initializing (self.gone_live==False)
     # because setting the values of the elements would already fire their change events.
-    # But in any case we kill a possibly existing connection. 
+    # But in any case we kill a possibly existing connection.
     # Changing the rfcomm channel e.g. fires this event instead of event_settings_changed.
     # @see event_settings_changed
     def event_settings_changed_reconnect(self, widget, data=None):
@@ -801,15 +935,9 @@ class ProximityGUI(object):
         # Put selected channel in channel entry field
         selection = self.wTree.get_object("treeScanChannelResult").get_selection()
         (model, tree_iter) = selection.get_selected()
-        # print("selection.getselected() is: {}".format(repr(selection.get_selected())))
-        # print("tree_iter is: {}".format(repr(tree_iter)))
         if tree_iter is not None:
             value = model.get_value(tree_iter, 0)
             self.wTree.get_object("entryChannel").set_value(int(value))
-            entry_channel_value = self.wTree.get_object("entryChannel").get_value()
-            print('tree_iter is: {0}\n\n'
-                  'Also, repr(tree_iter) is: {1}\n\n'
-                  'And entryChannel value is: {2}\n\n'.format(tree_iter, repr(tree_iter), entry_channel_value))
             self.writeSettings()
 
     # Callback to just close and not destroy the main window
@@ -827,41 +955,99 @@ class ProximityGUI(object):
         model, selection_iter = selection.get_selected()
         if (selection_iter):
             mac = self.model.get_value(selection_iter, 0)
-            self.wTree.get_widget("entryMAC").set_text(mac)
+            self.wTree.get_object("entryMAC").set_text(mac)
             self.writeSettings()
 
-    # Callback that is executed when the scan for devices button is clicked
-    # actually it starts the scanning asynchronously to have the gui redraw nicely before hanging :-)
-    def btnScan_clicked(self, widget, data=None):
+    # New method to handle the text animation for scanning status
+    def _animate_scan_status(self, label):
+        """Animates the text of the scanning label with dots."""
+        current_text = label.get_text()
+        dots = current_text.count('.')
 
-        # scan the area for bluetooth devices and show the results
+        base_text = _("Scanning")
+
+        new_dots = (dots + 1) % 4  # Cycles through 0, 1, 2, 3 dots
+
+        if new_dots == 0:
+            label.set_text(base_text)
+        else:
+            label.set_text(base_text + "." * new_dots)
+
+        return True # Return True to keep the timer running
+
+    # Callback that is executed when the scan for devices button is clicked.
+    # This now starts the scanning process in a non-blocking background thread.
+    def btnScan_clicked(self, widget, data=None):
+        # 1. Prepare the GUI for scanning
         from gi.repository import Gdk as gdk
         watch = gdk.Cursor(gdk.CursorType.WATCH)
         self.window.get_screen().get_root_window().set_cursor(watch)
-        self.model.clear()
-        self.model.append(['...', _('Now scanning...')])
-        self.setSensitiveConfigManagement(False)
-        from gi.repository import GLib as glib
-        glib.idle_add(self.cb_btnScan_clicked)
 
-    # Asynchronous callback function to do the actual device discovery scan
-    def cb_btnScan_clicked(self):
-        tmpMac = self.proxi.dev_mac
-        self.proxi.dev_mac = ''
-        self.proxi.kill_connection()
-        macs = []
-        try:
-            macs = self.proxi.get_device_list()
-        except:
-            macs = [['', _('Sorry, the bluetooth device is busy connecting.\n'
-                           'Please enter a correct mac address or no address at all\n'
-                           'for the config that is not connecting and try again later.')]]
-        self.proxi.dev_mac = tmpMac
         self.model.clear()
-        for mac in macs:
-            self.model.append([mac[0], mac[1]])
-        self.window.get_screen().get_root_window().set_cursor(None)
-        self.setSensitiveConfigManagement(True)
+        self.setSensitiveConfigManagement(False)
+        self.proxi.logger.log_line(_("Starting device scan..."))
+
+        # Show and animate the status label
+        status_label = self.wTree.get_object("labelScanStatus")
+        if status_label:
+            status_label.set_text(_("Scanning"))
+            status_label.show()
+            # Stop any previous timer before starting a new one
+            if self.scan_animation_timer:
+                glib.source_remove(self.scan_animation_timer)
+            self.scan_animation_timer = glib.timeout_add(500, self._animate_scan_status, status_label)
+
+        # 2. Create and start the background thread for scanning
+        scan_thread = threading.Thread(
+            target=self.proxi.get_device_list,
+            args=(self._add_device_to_model, self.on_scan_finished)
+        )
+        scan_thread.daemon = True
+        scan_thread.start()
+
+    # Callback to safely add a device to the list model from the main GTK thread.
+    def _add_device_to_model(self, device_data):
+        # This function is called from the background thread via the callback.
+        # To safely update the GTK model, we schedule the update to be run
+        # in the main GTK thread using GLib.idle_add.
+        glib.idle_add(self._update_model_in_main_thread, device_data)
+
+    # This private method performs the actual GUI update. It's only called by GLib.idle_add.
+    def _update_model_in_main_thread(self, device_data):
+        mac, name = device_data
+
+        # Check for duplicates to be extra safe
+        for row in self.model:
+            if row[0] == mac:
+                return False  # Device already in the list
+
+        self.model.append([mac, str(name)])
+        return False # Return False so the function is not called again by GLib
+
+    # Callback to be executed when the background scanning thread is finished.
+    def on_scan_finished(self):
+        # This function is also called from the background thread.
+        # We schedule the final GUI updates to run in the main thread.
+        def reset_gui_state():
+            self.window.get_screen().get_root_window().set_cursor(None)
+            self.setSensitiveConfigManagement(True)
+
+            # Stop animation and hide label
+            if self.scan_animation_timer:
+                glib.source_remove(self.scan_animation_timer)
+                self.scan_animation_timer = None
+
+            status_label = self.wTree.get_object("labelScanStatus")
+            if status_label:
+                status_label.hide()
+
+            if len(self.model) == 0:
+                self.model.append([_('No devices found.'), ''])
+
+            self.proxi.logger.log_line(_("Device scan finished."))
+            return False
+
+        glib.idle_add(reset_gui_state)
 
     # Callback that is executed when the scan channels button is clicked.
     # It starts an asynchronous scan for the channels via initiating a ScanDevice object.
@@ -871,7 +1057,7 @@ class ProximityGUI(object):
         # scan the selected device for possibly usable channels
         if self.scanningChannels:
             self.wTree.get_object("labelBtnScanChannel").set_label(_("Sca_n channels on device"))
-            self.wTree.get_object("channelScanWindow").hide_all()
+            self.wTree.get_object("channelScanWindow").hide()
             self.scanningChannels = False
             self.scanner.doStop()
             self.setSensitiveConfigManagement(True)
@@ -887,13 +1073,13 @@ class ProximityGUI(object):
             self.wTree.get_object("labelBtnScanChannel").set_label(_("Stop sca_nning"))
             self.wTree.get_object("channelScanWindow").show_all()
             self.scanningChannels = True
-            dialog = gtk.MessageDialog(text=_("The scanning process tries to connect to each of "
-                                              "the 30 possible ports. This will take some time and "
-                                              "you should watch your bluetooth device for any actions "
-                                              "to be taken. If possible click on accept/connect. If you "
-                                              "are asked for a pin your device was not paired properly before, "
-                                              "see the manual on how to fix this."),
-                                       buttons=gtk.ButtonsType.OK)
+            dialog = gtk.MessageDialog(transient_for=self.window, modal=True, message_type=gtk.MessageType.INFO, buttons=gtk.ButtonsType.OK,
+                                       text=_("The scanning process tries to connect to each of "
+                                         "the 30 possible ports. This will take some time and "
+                                         "you should watch your bluetooth device for any actions "
+                                         "to be taken. If possible click on accept/connect. If you "
+                                         "are asked for a pin your device was not paired properly before, "
+                                         "see the manual on how to fix this."))
             dialog.connect("response", lambda x, y: dialog.destroy())
             dialog.run()
             self.scanner = ScanDevice(mac, self.modelScan, was_paused, self.btnScanChannel_done)
@@ -917,15 +1103,14 @@ class ProximityGUI(object):
         self.window.hide()
 
         # Disable simulation mode for all configs
-        for config in configs:
+        for config in self.configs:
             config[2].Simulate = False
 
     def quit(self, widget, data=None):
 
         # try to close everything correctly
-        from gi.repository import GdkPixbuf
-        GdkPixbuf.Pixbuf.new_from_file(dist_path + icon_att)
-        for config in configs:
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(dist_path + icon_att)
+        for config in self.configs:
             config[2].logger.log_line(_('stopped.'))
             config[2].Stop = 1
             time.sleep(2)
@@ -948,17 +1133,15 @@ class ProximityGUI(object):
 
         # Update icon too
         if self.pauseMode:
-            from gi.repository import GdkPixbuf
-            # GdkPixbuf.Pixbuf.new_from_file(dist_path + icon_pause)
-            self.icon.set_icon_name(dist_path + icon_pause)
-            self.icon.set_tooltip_text(_('Pause Mode - not connected'))
+            # self.icon.set_from_file(dist_path + icon_pause) # Deprecated
+            self.icon.set_icon_full(dist_path + icon_pause, "Pause Mode - not connected")
         else:
 
             # we have to show the 'worst case' since we only have one icon but many configs...
             connection_state = 0
             con_info = ''
             con_icons = [icon_base, icon_att, icon_away, icon_error]
-            for config in configs:
+            for config in self.configs:
                 if config[2].ErrorMsg == "No connection found, trying to establish one...":
                     connection_state = 3
                 else:
@@ -977,17 +1160,14 @@ class ProximityGUI(object):
                 simu = _('\nSimulation Mode (locking disabled)')
             else:
                 simu = ''
-            self.icon.set_icon_name(dist_path + con_icons[connection_state])
-            self.icon.set_tooltip_text(con_info + '\n' + simu)
-        # print("self.proxi.Simulate is: {}".format(self.proxi.Simulate))
-        from gi.repository import GLib as glib
+            self.icon.set_icon_full(dist_path + con_icons[connection_state], con_info + '\n' + simu)
+
         self.timer = glib.timeout_add(1000, self.updateState)
 
     def proximityCommand(self):
         # This is the proximity command callback called asynchronously as the updateState above
         if self.proxi.State == _('active') and not self.proxi.Simulate:
             ret_val = os.popen(self.config['proximity_command']).readlines()
-            from gi.repository import GLib as glib
             self.timer2 = glib.timeout_add(1000 * int(self.config['proximity_interval']), self.proximityCommand)
 
 
@@ -1032,23 +1212,21 @@ class Logger(object):
     # Activates the logging to the given file.
     # Actually tries to append to that file first, afterwards tries to write to it.
     # If both don't work it gives an error message on stdout and does not activate the logging.
-    # @param filename The complete filename where to log to        
+    # @param filename The complete filename where to log to
     def enable_filelogging(self, filename):
         self.filename = filename
         try:
             # let's append
             self.flog = open(filename, 'a')
-            print(self.flog)
             self.filelogging = True
         except:
             try:
-                # did not work, then try to create file (is this really needed or does python
-                # know another attribute to file()?
+                # did not work, then try to create file
                 self.flog = open(filename, 'w')
                 self.filelogging = True
             except:
                 print(_("Could not open logfile '{}' for writing.").format(filename))
-                self.disable_filelogging
+                self.disable_filelogging()
 
     # Deactivates logging to a file.
     def disable_filelogging(self):
@@ -1096,14 +1274,13 @@ class ScanDevice(object):
     # @param device_mac MAC address of the bluetooth device to be scanned.
     # @param was_paused A parameter to be passed to the finishing callback function.
     # This is to automatically put the GUI in simulation mode if it has been before scanning. (dirty hack)
-    # @param callback A callback function to be called after scanning has been done. 
+    # @param callback A callback function to be called after scanning has been done.
     # It takes one parameter which is preset by the was_paused parameter.
     def __init__(self, device_mac, model, was_paused, callback):
         self.mac = device_mac
         self.model = model
         self.stopIt = False
         self.port = 1
-        from gi.repository import GLib as glib
         self.timer = glib.timeout_add(500, self.runStep)
         self.model.clear()
         self.was_paused = was_paused
@@ -1130,7 +1307,6 @@ class ScanDevice(object):
         self.model.append([str(self.port), self.scanPortResult(self.port)])
         self.port = self.port + 1
         if not self.port > 30 and not self.stopIt:
-            from gi.repository import GLib as glib
             self.timer = glib.timeout_add(500, self.runStep)
         else:
             self.callback(self.was_paused)
@@ -1173,13 +1349,62 @@ class Proximity(threading.Thread):
         self.timeGone = 0
         self.timeProx = 0
 
-    # Returns all active bluetooth devices found. This is a blocking call.
-    def get_device_list(self):
-        ret_tab = list()
-        nearby_devices = bluetooth.discover_devices()
-        for bdaddr in nearby_devices:
-            ret_tab.append([str(bdaddr), str(bluetooth.lookup_name(bdaddr))])
-        return ret_tab
+    # Returns all active bluetooth devices found. This is now a non-blocking call from the GUI's perspective.
+    # It runs in a separate thread and uses callbacks to update the GUI.
+    def get_device_list(self, update_callback, finished_callback):
+        found_macs = set()
+
+        def on_device_found(mac, name):
+            """Internal helper to avoid duplicate MACs and call the GUI callback."""
+            if mac not in found_macs:
+                found_macs.add(mac)
+                # This callback will be self.gui._add_device_to_model
+                update_callback((mac, name))
+
+        # --- 1. Classic Bluetooth Discovery ---
+        self.logger.log_line(_("Scanning for classic Bluetooth devices..."))
+        try:
+            # This is a blocking call, but it's running in our dedicated thread, so it's fine.
+            nearby_devices = bluetooth.discover_devices(duration=8, lookup_names=True, flush_cache=True)
+            for addr, name in nearby_devices:
+                on_device_found(str(addr), str(name))
+        except Exception as e:
+            self.logger.log_line(_("Classic Bluetooth scan failed: {}").format(e))
+
+        # --- 2. Bluetooth Low Energy (BLE) Discovery with Bleak ---
+        if IMPORT_BLEAK:
+            self.logger.log_line(_("Scanning for BLE devices with Bleak..."))
+
+            # We'll use Bleak's callback-based scanning which is perfect for our use case.
+            def bleak_detection_callback(device, advertisement_data):
+                """This function is called by Bleak for each device found."""
+                name = device.name or _("Unknown BLE Device")
+                on_device_found(str(device.address), str(name))
+
+            async def run_ble_scan():
+                """Async function to set up and run the scanner."""
+                # Pass the callback directly to the constructor to avoid FutureWarning
+                scanner = BleakScanner(detection_callback=bleak_detection_callback)
+                try:
+                    await scanner.start()
+                    await asyncio.sleep(5.0)  # Scan for 5 seconds
+                    await scanner.stop()
+                except Exception as e:
+                    self.logger.log_line(_("BLE scan with Bleak failed: {}").format(e))
+
+            try:
+                # We need to create and manage a new event loop for this thread.
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                loop.run_until_complete(run_ble_scan())
+            except Exception as e:
+                self.logger.log_line(_("Could not run Bleak scan: {}").format(e))
+        else:
+            self.logger.log_line(_("Bleak library not found, skipping BLE scan."))
+
+        # --- 3. Signal that the scan is complete ---
+        # This callback will be self.gui.on_scan_finished
+        finished_callback()
 
     # Kills the rssi detection connection.
     def kill_connection(self):
@@ -1347,7 +1572,6 @@ class Proximity(threading.Thread):
                             state = _("active")
                             duration_count = 0
                             if not self.Simulate:
-                                from gi.repository import GLib as glib
                                 # start the process asynchronously so we are not hanging here...
                                 timerAct = glib.timeout_add(5, self.go_active)
                                 # self.go_active()
@@ -1362,7 +1586,6 @@ class Proximity(threading.Thread):
                             duration_count = 0
                             if not self.Simulate:
                                 # start the process asynchronously so we are not hanging here...
-                                from gi.repository import GLib as glib
                                 timerGone = glib.timeout_add(5, self.go_gone)
                                 # self.go_gone()
                     else:
@@ -1378,7 +1601,6 @@ class Proximity(threading.Thread):
                         self.config['proximity_command'] != ''):
                     proxiCmdCounter = 0
                     # start the process asynchronously so we are not hanging here...
-                    from gi.repository import GLib as glib
                     timerProx = glib.timeout_add(5, self.go_proximity)
                 time.sleep(1)
             except KeyboardInterrupt:
@@ -1387,41 +1609,48 @@ class Proximity(threading.Thread):
 
 
 if __name__ == '__main__':
-    import gettext
-
-    gettext.bindtextdomain(APP_NAME, local_path)
-    gettext.textdomain(APP_NAME)
+    glib.set_application_name("BlueProximity")
 
     # react on ^C
     signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-    # read config if any
+    # --- Configuration Migration and Loading ---
     configs = []
     new_config = True
-    conf_dir = os.path.join(os.getenv('HOME'), '.blueproximity')
-    try:
+    conf_dir = os.path.join(os.getenv('HOME'), '.config', 'blueproximity')
+    old_conf_file = os.path.join(os.getenv('HOME'), '.blueproximityrc')
 
-        # check if config directory exists
-        os.mkdir(conf_dir)
-        print(_("Creating new config directory '%s'.") % conf_dir)
+    # --- Configuration Migration from legacy ~/.blueproximityrc ---
+    if os.path.isfile(old_conf_file):
+        print(_("Found legacy configuration file: %s") % old_conf_file)
+        try:
+            # Ensure the new configuration directory exists
+            os.makedirs(conf_dir, exist_ok=True)
+            new_conf_path = os.path.join(conf_dir, ("standard") + ".conf")
 
-        # we should now look for an old config file and try to move it to a better place...
-        os.rename(os.path.join(os.getenv('HOME'), '.blueproximityrc'), os.path.join(conf_dir, _("standard") + ".conf"))
-        print(_("Moved old configuration to the new config directory."))
-    except:
+            # Move the file only if the target doesn't exist to avoid overwriting
+            if not os.path.exists(new_conf_path):
+                os.rename(old_conf_file, new_conf_path)
+                print(_("Successfully migrated legacy configuration to: %s") % new_conf_path)
+            else:
+                print(_("Legacy configuration not migrated because a file already exists at the destination: %s") % new_conf_path)
+    
+        except OSError as e:
+            print(_("Error migrating legacy configuration: %s") % e)
+    else:
+        # In any case, make sure the config directory exists for future use.
+        os.makedirs(conf_dir, exist_ok=True)
 
-        # we can't create it because it is already there...
-        pass
 
     # now look for .conf files in there
     vdt = Validator()
     for filename in os.listdir(conf_dir):
         if filename.endswith('.conf'):
             try:
-
                 # add every valid .conf file to the array of configs
+                # Fixed: passing options to ConfigObj as keyword arguments
                 config = ConfigObj(os.path.join(conf_dir, filename),
-                                   {'create_empty': False, 'file_error': True, 'configspec': conf_specs})
+                                   create_empty=False, file_error=True, configspec=conf_specs)
 
                 # first validate it
                 config.validate(vdt, copy=True)
@@ -1433,13 +1662,14 @@ if __name__ == '__main__':
                 configs.append([filename[:-5], config])
                 new_config = False
                 print(_("Using config file '%s'.") % filename)
-            except:
-                print(_("'%s' is not a valid config file.") % filename)
+            except Exception as e:
+                print(_("'%s' is not a valid config file: %s") % (filename, e))
 
     # no previous configuration could be found so let's create a new one
     if new_config:
-        config = ConfigObj(os.path.join(conf_dir, _('standard') + '.conf'),
-                           {'create_empty': True, 'file_error': False, 'configspec': conf_specs})
+        # Fixed: passing options to ConfigObj as keyword arguments
+        config = ConfigObj(os.path.join(conf_dir, ('standard') + '.conf'),
+                           create_empty=True, file_error=False, configspec=conf_specs)
 
         # next line fixes a problem with creating empty strings in default values for configobj
         config['device_mac'] = ''
@@ -1447,26 +1677,22 @@ if __name__ == '__main__':
 
         # write it in a secure manner
         config.write()
-        configs.append([_('standard'), config])
+        configs.append([('standard'), config])
 
         # we can't log these messages since logging is not yet configured, so we just print it to stdout
         print(_("Creating new configuration."))
-        print(_("Using config file '%s'.") % _('standard'))
+        print(_("Using config file '%s'.") % (('standard') + '.conf'))
 
     # now start the proximity detection for each configuration
-    for config in configs:
-        p = Proximity(config[1])
+    for config_item in configs:
+        p = Proximity(config_item[1])
         p.start()
-        config.append(p)
+        config_item.append(p)
 
     configs.sort()
 
     # the idea behind 'configs' is an array containing the name, the configobj and the proximity object
     pGui = ProximityGUI(configs, new_config)
-
-    # make GTK threadable
-    ## from gi.repository import Gdk as gdk
-    ## gdk.threads_init()
 
     # aaaaand action!
     gtk.main()

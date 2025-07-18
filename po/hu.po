@@ -1,0 +1,609 @@
+# Hungarian translation for BlueProximity package.
+# Copyright (C) 2008 THE BlueProximity'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the BlueProximity package.
+# KAMI <kamihir@freemail.hu>, 2008.
+# crims0n <crims0n@minios.dev>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: blueproximity 1.4.0\n"
+"Report-Msgid-Bugs-To: support@minios.dev\n"
+"POT-Creation-Date: 2025-07-18 14:46+0300\n"
+"PO-Revision-Date: 2008-03-02 07:22+0100\n"
+"Last-Translator: crims0n <crims0n@minios.dev>\n"
+"Language-Team: Hungarian <hu@li.org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: proximity.py:786
+msgid ""
+"\n"
+"        BlueProximity is free software; you can redistribute it and/or "
+"modify it\n"
+"        under the terms of the GNU General Public License as published by "
+"the\n"
+"        Free Software Foundation; either version 2 of the License, or\n"
+"        (at your option) any later version.\n"
+"\n"
+"        BlueProximity is distributed in the hope that it will be useful, "
+"but\n"
+"        WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"
+"        See the GNU General Public License for more details.\n"
+"\n"
+"        You should have received a copy of the GNU General Public License\n"
+"        along with BlueProximity; if not, write to the\n"
+"\n"
+"        Free Software Foundation, Inc.,\n"
+"        59 Temple Place, Suite 330,\n"
+"        Boston, MA  02111-1307  USA\n"
+"        "
+msgstr ""
+"\n"
+"A BlueProximity szabad szoftver, terjesztheti és/vagy módosíthatja a Free\n"
+" Software Foundation által kiadott GNU General Public License második (vagy\n"
+" bármely későbbi) változatában foglaltak alapján.\n"
+"\n"
+"A BlueProximity programot abban a reményben\n"
+" terjesztjük, hogy hasznos lesz, de nem vállalunk\n"
+" SEMMIFÉLE GARANCIÁT, még olyan értelemben sem, hogy\n"
+" a program alkalmas-e a KÖZREADÁSRA vagy EGY\n"
+" BIZONYOS FELADAT ELVÉGZÉSÉRE. További részletekért\n"
+" tanulmányozza a GNU GPL licencet.\n"
+"\n"
+"A BlueProximity programhoz a GNU General Public\n"
+" License egy példánya is jár, ha nem kapta meg, írjon a\n"
+" Free Software Foundation Inc.-nek. Levélcímük: 51 Franklin\n"
+" St, Fifth Floor, Boston, MA 02110-1301, USA.\n"
+"        "
+
+#: proximity.py:1160
+msgid ""
+"\n"
+"Simulation Mode (locking disabled)"
+msgstr ""
+"\n"
+"Szimuláció (zárolás kikapcsolva)"
+
+#: proximity.py:1130
+msgid " max: "
+msgstr " Maximum: "
+
+#: proximity.py:1131
+msgid " state: "
+msgstr " Állapot: "
+
+#: proximity.py:1666
+#, python-format
+msgid "'%s' is not a valid config file: %s"
+msgstr "A(z) '%s' nem érvényes konfigurációs fájl: %s"
+
+#: proximity.py:1519 proximity.py:1522 proximity.py:1536 proximity.py:1539
+#: proximity.py:1549 proximity.py:1550
+#, python-format
+msgid ""
+"A command for %s has been skipped because the former command did not finish "
+"yet."
+msgstr ""
+"A '%s' parancs végrehajtása kihagyásra került, mert egy előző parancs "
+"végrehajtása még nem fejeződött be."
+
+#: proximity.py:524 proximity.py:584
+#, python-format
+msgid "A configuration file with the name '%s' already exists."
+msgstr "A(z) '%s' néven létrehozandó konfigurációs fájl már létezik."
+
+#: proximity.py:476
+msgid "About"
+msgstr "Névjegy"
+
+#: proximity.glade:886
+msgid "Action commands"
+msgstr "Műveletparancsok"
+
+#: proximity.py:142
+msgid "BLE device scanning will be disabled."
+msgstr "A BLE-eszközök keresése letiltva lesz."
+
+#: proximity.py:1393
+msgid "BLE scan with Bleak failed: {}"
+msgstr "A BLE keresés Bleak-kel sikertelen: {}"
+
+#: proximity.py:1403
+msgid "Bleak library not found, skipping BLE scan."
+msgstr "A Bleak könyvtár nem található, BLE keresés kihagyva."
+
+#: proximity.glade:169
+msgid "BlueProximity Preferences"
+msgstr "BlueProximity beállítások"
+
+#: proximity.py:437
+msgid "Channel"
+msgstr "Csatorna"
+
+#: proximity.py:1372
+msgid "Classic Bluetooth scan failed: {}"
+msgstr "A klasszikus Bluetooth keresés sikertelen: {}"
+
+#: proximity.glade:1055
+msgid ""
+"Command _interval:\n"
+"(sec.)"
+msgstr ""
+"Parancskiadás _időköze:\n"
+"(mp)"
+
+#: proximity.py:1228
+msgid "Could not open logfile '{}' for writing."
+msgstr "A naplófájl ('{}') írásra nem nyitható meg."
+
+#: proximity.py:1401
+msgid "Could not run Bleak scan: {}"
+msgstr "A Bleak keresés nem futtatható: {}"
+
+#: proximity.glade:8
+msgid "Create new configuration"
+msgstr "Új konfiguráció létrehozása"
+
+#: proximity.py:1683
+msgid "Creating new configuration."
+msgstr "Új konfiguráció létrehozása folyamatban."
+
+#: proximity.py:1158
+msgid "Current State: "
+msgstr "Jelenlegi állapot: "
+
+#: proximity.glade:674
+msgid "D_istance:"
+msgstr "_Távolság:"
+
+#: proximity.glade:660
+msgid "D_uration (sec.):"
+msgstr "_Időtartam (mp):"
+
+#: proximity.glade:246
+msgid "Delete Configuration"
+msgstr "Konfiguráció törlése"
+
+#: proximity.py:1157
+msgid "Detected Distance: "
+msgstr "Érzékelt távolság: "
+
+#: proximity.py:1047
+msgid "Device scan finished."
+msgstr "Eszközkeresés befejeződött."
+
+#: proximity.glade:716
+msgid "Distance:"
+msgstr "Tá_volság:"
+
+#: proximity.py:700
+#, python-format
+msgid "Do you really want to delete the configuration '%s'?"
+msgstr "Valóban le kívánja törölni a(z) '%s' konfigurációt?"
+
+#: proximity.glade:688
+msgid "Dur_ation (sec.):"
+msgstr "I_dőtartam (mp):"
+
+#: proximity.py:1639
+#, python-format
+msgid "Error migrating legacy configuration: %s"
+msgstr "Hiba a régi konfiguráció áttelepítésekor: %s"
+
+#: proximity.glade:972
+msgid "F_acility"
+msgstr "_Szolgáltatás"
+
+#: proximity.glade:941
+msgid "File_name"
+msgstr "_Fájlnév"
+
+#: proximity.py:1625
+#, python-format
+msgid "Found legacy configuration file: %s"
+msgstr "Régi konfigurációs fájl található: %s"
+
+#: proximity.py:1343
+msgid "Initialized..."
+msgstr "Elindítva..."
+
+#: proximity.glade:901
+msgid "L_ocking command:"
+msgstr "_Zárolás parancs:"
+
+#: proximity.py:762
+msgid "Leave it - it's locked, come back - it's back too..."
+msgstr "Távozásával gépe zárolva lesz, de amint visszatér, gépe is..."
+
+#: proximity.py:1636
+#, python-format
+msgid ""
+"Legacy configuration not migrated because a file already exists at the "
+"destination: %s"
+msgstr ""
+"A régi konfiguráció nem került áttelepítésre, mert egy fájl már létezik a "
+"célhelyen: %s"
+
+#: proximity.glade:840
+msgid "Locking"
+msgstr "Zárolás"
+
+#: proximity.glade:1025
+msgid "Logging"
+msgstr "Naplózás"
+
+#: proximity.py:427
+msgid "MAC"
+msgstr "MAC"
+
+#: proximity.glade:481
+msgid "MAC _Address"
+msgstr "_MAC-cím"
+
+#: proximity.glade:741
+msgid "Measured atm"
+msgstr "Jelenleg mért érték"
+
+#: proximity.py:431
+msgid "Name"
+msgstr "Név"
+
+#: proximity.glade:225
+msgid "New Configuration"
+msgstr "Új konfiguráció"
+
+#: proximity.py:1502
+msgid "No connection found, trying to establish one..."
+msgstr "Nincs kapcsolat, próbálkozás..."
+
+#: proximity.py:1045
+msgid "No devices found."
+msgstr "Nem található eszköz."
+
+#: proximity.py:465
+msgid "Pause"
+msgstr "Szüneteltetés"
+
+#: proximity.py:105
+msgid "Please make sure the ConfigObject package for python is installed."
+msgstr ""
+"Győződjön meg róla, hogy a ConfigObject Python csomag telepítve van."
+
+#: proximity.py:95
+msgid ""
+"Please make sure the GI bindings for AyatanaAppIndicator3 are installed."
+msgstr ""
+"Győződjön meg róla, hogy az AyatanaAppIndicator3 GI-kötések telepítve vannak."
+
+#: proximity.py:85
+msgid "Please make sure the GObject bindings for python are installed."
+msgstr ""
+"Győződjön meg róla, hogy a GObject Python kötés telepítve van."
+
+#: proximity.py:150 proximity.py:160
+msgid "Please make sure the GTK3 bindings for python are installed."
+msgstr ""
+"Győződjön meg róla, hogy a GTK3 Python kötés telepítve van."
+
+#: proximity.py:170
+msgid "Please make sure the Glade3 bindings for python are installed."
+msgstr ""
+"Győződjön meg róla, hogy a Glade3 Python kötés telepítve van."
+
+#: proximity.py:135
+msgid ""
+"Please make sure the bluetooth bindings for python as well as bluez are "
+"installed."
+msgstr ""
+"Győződjön meg róla, hogy a Bluetooth Python kötés, valamint a Bluez telepítve "
+"van."
+
+#: proximity.glade:358
+msgid "Please note that the device should already be paired!"
+msgstr "Kérem vegye figyelembe, hogy az eszköznek már párosítottnak kell lennie!"
+
+#: proximity.py:454
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: proximity.glade:1041
+msgid "Pro_ximity command:"
+msgstr "_Proximity parancs:"
+
+#: proximity.py:491
+msgid "Quit"
+msgstr "Kilépés"
+
+#: proximity.glade:519
+msgid "RFCOMM C_hannel"
+msgstr "RFCOMM _csatorna"
+
+#: proximity.glade:267
+msgid "Rename Configuration"
+msgstr "Konfiguráció átnevezése"
+
+#: proximity.glade:1247
+msgid "Rename configuration"
+msgstr "Konfiguráció átnevezése"
+
+#: proximity.glade:1304
+msgid ""
+"Renaming the configuration will change the name of the config file on the "
+"disk."
+msgstr ""
+"A konfiguráció átnevezésével a konfigurációs fájl neve is megváltozik a "
+"lemezen."
+
+#: proximity.py:1059 proximity.py:1093 proximity.glade:572
+msgid "Sca_n channels on device"
+msgstr "_Csatornakeresés az eszközön"
+
+#: proximity.py:967 proximity.py:993
+msgid "Scanning"
+msgstr "Keresés"
+
+#: proximity.py:1376
+msgid "Scanning for BLE devices with Bleak..."
+msgstr "BLE-eszközök keresése Bleak-kel..."
+
+#: proximity.py:1365
+msgid "Scanning for classic Bluetooth devices..."
+msgstr "Klasszikus Bluetooth eszközök keresése..."
+
+#: proximity.glade:343
+msgid "Scanning..."
+msgstr "Keresés..."
+
+#: proximity.glade:305
+msgid "Select from _detected devices:"
+msgstr "Válasszon az _észlelt eszközök közül:"
+
+#: proximity.glade:189
+msgid "Selected Confi_guration"
+msgstr "Kiválasztott _konfiguráció"
+
+#: proximity.py:988
+msgid "Starting device scan..."
+msgstr "Eszközkeresés indítása..."
+
+#: proximity.py:441
+msgid "State"
+msgstr "Állapot"
+
+#: proximity.py:1158
+msgid "Status: "
+msgstr "Üzemmód: "
+
+#: proximity.py:1073
+msgid "Stop sca_nning"
+msgstr "Keresés _leállítása"
+
+#: proximity.py:1634
+#, python-format
+msgid "Successfully migrated legacy configuration to: %s"
+msgstr "Régi konfiguráció sikeresen átmásolva ide: %s"
+
+#: proximity.py:546 proximity.py:730
+#, python-format
+msgid "The configfile '%s' could not be deleted."
+msgstr "A(z) '%s' konfigurációs fájl nem törölhető."
+
+#: proximity.py:693
+msgid "The last configuration file cannot be deleted."
+msgstr "Az utolsó konfigurációs fájl nem törölhető."
+
+#: proximity.glade:65
+msgid ""
+"The new configuration will be created as a copy of the current "
+"configuration. Please change the according values afterwards."
+msgstr ""
+"Az új konfiguráció az aktuális konfiguráció másolata lesz. Kérjük, utána "
+"módosítsa a megfelelő értékeket."
+
+#: proximity.py:94
+msgid "The program cannot import the module AyatanaAppIndicator3."
+msgstr "A program nem tudta importálni az AyatanaAppIndicator3 modult."
+
+#: proximity.py:169
+msgid "The program cannot import the module Builder (former glade)."
+msgstr "A program nem tudta importálni a Builder (korábbi glade) modult."
+
+#: proximity.py:104
+msgid "The program cannot import the module ConfigObj or Validator."
+msgstr "A program nem tudta importálni a ConfigObj vagy a Validator modult."
+
+#: proximity.py:159
+msgid "The program cannot import the module GdkPixbuf."
+msgstr "A program nem tudta importálni a GdkPixbuf modult."
+
+#: proximity.py:134
+msgid "The program cannot import the module bluetooth."
+msgstr "A program nem tudta importálni a bluetooth modult."
+
+#: proximity.py:84
+msgid "The program cannot import the module gobject."
+msgstr "A program nem tudta importálni a gobject modult."
+
+#: proximity.py:149
+msgid "The program cannot import the module pygtk."
+msgstr "A program nem tudta importálni a pygtk modult."
+
+#: proximity.py:1077
+msgid ""
+"The scanning process tries to connect to each of the 30 possible ports. This "
+"will take some time and you should watch your bluetooth device for any "
+"actions to be taken. If possible click on accept/connect. If you are asked "
+"for a pin your device was not paired properly before, see the manual on how "
+"to fix this."
+msgstr ""
+"A keresőfolyamat megpróbál csatlakozni mind a 30 lehetséges porthoz. Ez némi "
+"időt vesz igénybe, és figyelnie kell a Bluetooth eszközét az esetleges "
+"műveletekre. Ha lehetséges, kattintson az elfogadás/csatlakozás gombra. Ha "
+"PIN kódot kér, az eszköz nem volt megfelelően párosítva előzőleg, lásd a "
+"kézikönyvet a javításhoz."
+
+#: proximity.py:143
+msgid "To enable it on Debian/Ubuntu, type:"
+msgstr "Debian/Ubuntu alatt engedélyezéshez írja be:"
+
+#: proximity.py:1381
+msgid "Unknown BLE Device"
+msgstr "Ismeretlen BLE eszköz"
+
+#: proximity.glade:728
+msgid "Unlocking"
+msgstr "Feloldás"
+
+#: proximity.py:1664 proximity.py:1684
+#, python-format
+msgid "Using config file '%s'."
+msgstr "'%s' konfigurációs fájl használata."
+
+#: proximity.py:141
+msgid "Warning: The 'bleak' library is not installed."
+msgstr "Figyelem: a 'bleak' könyvtár nincs telepítve."
+
+#: proximity.py:512
+msgid "You must enter a name for the configuration."
+msgstr "Meg kell adnia egy nevet a konfigurációnak."
+
+#: proximity.py:570
+msgid "You must enter a name for the new configuration."
+msgstr "Meg kell adnia egy nevet az új konfigurációnak."
+
+#: proximity.glade:1200
+msgid "_About"
+msgstr "_Névjegy"
+
+#: proximity.glade:627
+msgid "_Bluetooth Device"
+msgstr "_Bluetooth eszköz"
+
+#: proximity.glade:106 proximity.glade:1345
+msgid "_Cancel"
+msgstr "_Mégse"
+
+#: proximity.glade:1220
+msgid "_Close"
+msgstr "_Bezárás"
+
+#: proximity.glade:86
+msgid "_Create"
+msgstr "_Létrehozás"
+
+#: proximity.glade:646
+msgid "_Distance:"
+msgstr "_Távolság:"
+
+#: proximity.glade:952
+msgid "_File"
+msgstr "_Fájl"
+
+#: proximity.glade:1153
+msgid "_Locking"
+msgstr "_Zárolás"
+
+#: proximity.glade:32
+msgid "_Name of new configuration:"
+msgstr "Ú_j konfiguráció neve:"
+
+#: proximity.glade:1271
+msgid "_New name of configuration:"
+msgstr "Konfiguráció _új neve:"
+
+#: proximity.glade:867
+msgid "_Proximity Details"
+msgstr "_Közelség adatai"
+
+#: proximity.glade:1325
+msgid "_Rename"
+msgstr "_Átnevezés"
+
+#: proximity.glade:699
+msgid "_Reset Min/Max"
+msgstr "_Min/Max visszaállítása"
+
+#: proximity.glade:402
+msgid "_Scan for devices"
+msgstr "_Eszközök keresése"
+
+#: proximity.glade:1006
+msgid "_Syslog"
+msgstr "_Rendszernapló"
+
+#: proximity.glade:915
+msgid "_Unlocking command:"
+msgstr "_Feloldó parancs:"
+
+#: proximity.glade:447
+msgid "_Use selected device"
+msgstr "_Kiválasztott eszköz használata"
+
+#: proximity.py:1148 proximity.py:1169 proximity.py:1572
+msgid "active"
+msgstr "aktív"
+
+#: proximity.py:1301
+msgid "closed or denied"
+msgstr "zárva vagy elutasítva"
+
+#: proximity.py:86 proximity.py:96 proximity.py:106 proximity.py:136
+#: proximity.py:151 proximity.py:161 proximity.py:171
+msgid "e.g. with Debian/Ubuntu, type"
+msgstr "pl. Debian/Ubuntu esetén írja be:"
+
+#: proximity.py:1330 proximity.py:1557 proximity.py:1568 proximity.py:1584
+msgid "gone"
+msgstr "távol"
+
+#: proximity.py:1537 proximity.py:1539
+msgid "locking"
+msgstr "zárolás"
+
+#: proximity.py:1129
+msgid "min: "
+msgstr "min: "
+
+#: proximity.glade:754
+msgid "min: - max: - state: -"
+msgstr "min: - max: - állapot: -"
+
+#: proximity.glade:205
+msgid "no entries"
+msgstr "nincs bejegyzés"
+
+#: proximity.py:1549 proximity.py:1551
+msgid "proximity"
+msgstr "közelség"
+
+#: proximity.py:1563
+msgid "running..."
+msgstr "fut..."
+
+#: proximity.py:1529
+msgid "screen is locked"
+msgstr "a képernyő zárolva van"
+
+#: proximity.py:1512
+msgid "screen is unlocked"
+msgstr "a képernyő fel van oldva"
+
+#: proximity.py:343
+msgid "started."
+msgstr "elindítva."
+
+#: proximity.py:1114
+msgid "stopped."
+msgstr "leállítva."
+
+#: proximity.py:1520 proximity.py:1522
+msgid "unlocking"
+msgstr "feloldás"
+
+#: proximity.py:1299
+msgid "usable"
+msgstr "használható"

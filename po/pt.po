@@ -1,0 +1,613 @@
+## Portuguese translation for BlueProximity package.
+# Copyright (C) 2008 THE BlueProximity'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the BlueProximity package.
+# crims0n <crims0n@minios.dev>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: blueproximity 1.4.0\n"
+"Report-Msgid-Bugs-To: support@minios.dev\n"
+"POT-Creation-Date: 2025-07-18 14:46+0300\n"
+"PO-Revision-Date: 2025-07-18 14:46+0300\n"
+"Last-Translator: crims0n <crims0n@minios.dev>\n"
+"Language-Team: Portuguese <pt@li.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: proximity.py:786
+msgid ""
+"\n"
+"        BlueProximity is free software; you can redistribute it and/or "
+"modify it\n"
+"        under the terms of the GNU General Public License as published by "
+"the\n"
+"        Free Software Foundation; either version 2 of the License, or\n"
+"        (at your option) any later version.\n"
+"\n"
+"        BlueProximity is distributed in the hope that it will be useful, "
+"but\n"
+"        WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"
+"        See the GNU General Public License for more details.\n"
+"\n"
+"        You should have received a copy of the GNU General Public License\n"
+"        along with BlueProximity; if not, write to the\n"
+"\n"
+"        Free Software Foundation, Inc.,\n"
+"        59 Temple Place, Suite 330,\n"
+"        Boston, MA  02111-1307  USA\n"
+"        "
+msgstr ""
+"\n"
+"        BlueProximity é um software livre; pode redistribuí-lo e/ou modificá-"
+"lo\n"
+"        sob os termos da Licença Pública Geral GNU, conforme publicada pela\n"
+"        Free Software Foundation; quer seja a versão 2 da Licença, ou\n"
+"        (à sua escolha) qualquer versão posterior.\n"
+"\n"
+"        BlueProximity é distribuído na esperança de que seja útil, mas\n"
+"        SEM QUALQUER GARANTIA; sem sequer a garantia implícita de\n"
+"        COMERCIABILIDADE ou ADEQUAÇÃO A UM FIM ESPECÍFICO.\n"
+"        Consulte a Licença Pública Geral GNU para mais detalhes.\n"
+"\n"
+"        Deveria ter recebido uma cópia da Licença Pública Geral GNU\n"
+"        juntamente com BlueProximity; caso contrário, escreva para a\n"
+"\n"
+"        Free Software Foundation, Inc.,\n"
+"        59 Temple Place, Suite 330,\n"
+"        Boston, MA  02111-1307  EUA\n"
+"        "
+
+#: proximity.py:1160
+msgid ""
+"\n"
+"Simulation Mode (locking disabled)"
+msgstr ""
+"\n"
+"Modo de simulação (bloqueio desativado)"
+
+#: proximity.py:1130
+msgid " max: "
+msgstr " máx: "
+
+#: proximity.py:1131
+msgid " state: "
+msgstr " estado: "
+
+#: proximity.py:1666
+#, python-format
+msgid "'%s' is not a valid config file: %s"
+msgstr "'%s' não é um ficheiro de configuração válido: %s"
+
+#: proximity.py:1519 proximity.py:1522 proximity.py:1536 proximity.py:1539
+#: proximity.py:1549 proximity.py:1550
+#, python-format
+msgid ""
+"A command for %s has been skipped because the former command did not finish "
+"yet."
+msgstr ""
+"Um comando para %s foi ignorado porque o comando anterior ainda não terminou."
+
+#: proximity.py:524 proximity.py:584
+#, python-format
+msgid "A configuration file with the name '%s' already exists."
+msgstr "Um ficheiro de configuração com o nome '%s' já existe."
+
+#: proximity.py:476
+msgid "About"
+msgstr "Sobre"
+
+#: proximity.glade:886
+msgid "Action commands"
+msgstr "Comandos de ação"
+
+#: proximity.py:142
+msgid "BLE device scanning will be disabled."
+msgstr "A pesquisa de dispositivos BLE será desativada."
+
+#: proximity.py:1393
+msgid "BLE scan with Bleak failed: {}"
+msgstr "A pesquisa BLE com Bleak falhou: {}"
+
+#: proximity.py:1403
+msgid "Bleak library not found, skipping BLE scan."
+msgstr "Biblioteca Bleak não encontrada, a pesquisa BLE será ignorada."
+
+#: proximity.glade:169
+msgid "BlueProximity Preferences"
+msgstr "Preferências do BlueProximity"
+
+#: proximity.py:437
+msgid "Channel"
+msgstr "Canal"
+
+#: proximity.py:1372
+msgid "Classic Bluetooth scan failed: {}"
+msgstr "A pesquisa Bluetooth clássica falhou: {}"
+
+#: proximity.glade:1055
+msgid ""
+"Command _interval:\n"
+"(sec.)"
+msgstr ""
+"Interv_alo do comando:\n"
+"(seg.)"
+
+#: proximity.py:1228
+msgid "Could not open logfile '{}' for writing."
+msgstr "Não foi possível abrir o ficheiro de registo '{}' para escrita."
+
+#: proximity.py:1401
+msgid "Could not run Bleak scan: {}"
+msgstr "Não foi possível executar a pesquisa Bleak: {}"
+
+#: proximity.glade:8
+msgid "Create new configuration"
+msgstr "Criar nova configuração"
+
+#: proximity.py:1683
+msgid "Creating new configuration."
+msgstr "A criar nova configuração."
+
+#: proximity.py:1158
+msgid "Current State: "
+msgstr "Estado atual: "
+
+#: proximity.glade:674
+msgid "D_istance:"
+msgstr "D_istância:"
+
+#: proximity.glade:660
+msgid "D_uration (sec.):"
+msgstr "D_uração (seg.):"
+
+#: proximity.glade:246
+msgid "Delete Configuration"
+msgstr "Apagar Configuração"
+
+#: proximity.py:1157
+msgid "Detected Distance: "
+msgstr "Distância detetada: "
+
+#: proximity.py:1047
+msgid "Device scan finished."
+msgstr "Pesquisa de dispositivos terminada."
+
+#: proximity.glade:716
+msgid "Distance:"
+msgstr "Distância:"
+
+#: proximity.py:700
+#, python-format
+msgid "Do you really want to delete the configuration '%s'?"
+msgstr "Deseja realmente apagar a configuração '%s'?"
+
+#: proximity.glade:688
+msgid "Dur_ation (sec.):"
+msgstr "Dur_ação (seg.):"
+
+#: proximity.py:1639
+#, python-format
+msgid "Error migrating legacy configuration: %s"
+msgstr "Erro ao migrar a configuração legada: %s"
+
+#: proximity.glade:972
+msgid "F_acility"
+msgstr "F_acilidade"
+
+#: proximity.glade:941
+msgid "File_name"
+msgstr "Nome_do_ficheiro"
+
+#: proximity.py:1625
+#, python-format
+msgid "Found legacy configuration file: %s"
+msgstr "Ficheiro de configuração legado encontrado: %s"
+
+#: proximity.py:1343
+msgid "Initialized..."
+msgstr "Iniciado..."
+
+#: proximity.glade:901
+msgid "L_ocking command:"
+msgstr "Comando de b_loqueio:"
+
+#: proximity.py:762
+msgid "Leave it - it's locked, come back - it's back too..."
+msgstr "Deixe-o - está bloqueado, volte - ele também está de volta..."
+
+#: proximity.py:1636
+#, python-format
+msgid ""
+"Legacy configuration not migrated because a file already exists at the "
+"destination: %s"
+msgstr ""
+"Configuração legada não migrada porque já existe um ficheiro no destino: %s"
+
+#: proximity.glade:840
+msgid "Locking"
+msgstr "_Bloqueio"
+
+#: proximity.glade:1025
+msgid "Logging"
+msgstr "Registo"
+
+#: proximity.py:427
+msgid "MAC"
+msgstr "MAC"
+
+#: proximity.glade:481
+msgid "MAC _Address"
+msgstr "_Endereço MAC"
+
+#: proximity.glade:741
+msgid "Measured atm"
+msgstr "Medido atualmente"
+
+#: proximity.py:431
+msgid "Name"
+msgstr "Nome"
+
+#: proximity.glade:225
+msgid "New Configuration"
+msgstr "Nova Configuração"
+
+#: proximity.py:1502
+msgid "No connection found, trying to establish one..."
+msgstr "Nenhuma ligação encontrada, a tentar estabelecer uma..."
+
+#: proximity.py:1045
+msgid "No devices found."
+msgstr "Nenhum dispositivo encontrado."
+
+#: proximity.py:465
+msgid "Pause"
+msgstr "Pausa"
+
+#: proximity.py:105
+msgid "Please make sure the ConfigObject package for python is installed."
+msgstr ""
+"Por favor, certifique-se de que o pacote ConfigObject para python está "
+"instalado."
+
+#: proximity.py:95
+msgid ""
+"Please make sure the GI bindings for AyatanaAppIndicator3 are installed."
+msgstr ""
+"Por favor, certifique-se de que as ligações GI para AyatanaAppIndicator3 "
+"estão instaladas."
+
+#: proximity.py:85
+msgid "Please make sure the GObject bindings for python are installed."
+msgstr ""
+"Por favor, certifique-se de que as ligações GObject para python estão "
+"instaladas."
+
+#: proximity.py:150 proximity.py:160
+msgid "Please make sure the GTK3 bindings for python are installed."
+msgstr ""
+"Por favor, certifique-se de que as ligações GTK3 para python estão "
+"instaladas."
+
+#: proximity.py:170
+msgid "Please make sure the Glade3 bindings for python are installed."
+msgstr ""
+"Por favor, certifique-se de que as ligações Glade3 para python estão "
+"instaladas."
+
+#: proximity.py:135
+msgid ""
+"Please make sure the bluetooth bindings for python as well as bluez are "
+"installed."
+msgstr ""
+"Por favor, certifique-se de que as ligações bluetooth para python, bem como "
+"o bluez, estão instaladas."
+
+#: proximity.glade:358
+msgid "Please note that the device should already be paired!"
+msgstr "Por favor, note que o dispositivo já deverá estar emparelhado!"
+
+#: proximity.py:454
+msgid "Preferences"
+msgstr "Preferências"
+
+#: proximity.glade:1041
+msgid "Pro_ximity command:"
+msgstr "Comando de _Proximidade:"
+
+#: proximity.py:491
+msgid "Quit"
+msgstr "Sair"
+
+#: proximity.glade:519
+msgid "RFCOMM C_hannel"
+msgstr "C_anal RFCOMM"
+
+#: proximity.glade:267
+msgid "Rename Configuration"
+msgstr "Renomear configuração"
+
+#: proximity.glade:1247
+msgid "Rename configuration"
+msgstr "Renomear configuração"
+
+#: proximity.glade:1304
+msgid ""
+"Renaming the configuration will change the name of the config file on the "
+"disk."
+msgstr ""
+"Renomear a configuração alterará o nome do ficheiro de configuração "
+"no disco."
+
+#: proximity.py:1059 proximity.py:1093 proximity.glade:572
+msgid "Sca_n channels on device"
+msgstr "Pr_oceder à procura de canais no dispositivo"
+
+#: proximity.py:967 proximity.py:993
+msgid "Scanning"
+msgstr "A procurar"
+
+#: proximity.py:1376
+msgid "Scanning for BLE devices with Bleak..."
+msgstr "A procurar dispositivos BLE com Bleak..."
+
+#: proximity.py:1365
+msgid "Scanning for classic Bluetooth devices..."
+msgstr "A procurar dispositivos Bluetooth clássicos..."
+
+#: proximity.glade:343
+msgid "Scanning..."
+msgstr "A procurar..."
+
+#: proximity.glade:305
+msgid "Select from _detected devices:"
+msgstr "Selecionar dos dispositivos _detetados:"
+
+#: proximity.glade:189
+msgid "Selected Confi_guration"
+msgstr "Confi_guração selecionada"
+
+#: proximity.py:988
+msgid "Starting device scan..."
+msgstr "A iniciar pesquisa de dispositivos..."
+
+#: proximity.py:441
+msgid "State"
+msgstr "Estado"
+
+#: proximity.py:1158
+msgid "Status: "
+msgstr "Estado: "
+
+#: proximity.py:1073
+msgid "Stop sca_nning"
+msgstr "Parar pr_ocura"
+
+#: proximity.py:1634
+#, python-format
+msgid "Successfully migrated legacy configuration to: %s"
+msgstr "Configuração legada migrada com sucesso para: %s"
+
+#: proximity.py:546 proximity.py:730
+#, python-format
+msgid "The configfile '%s' could not be deleted."
+msgstr "O ficheiro de configuração '%s' não pôde ser apagado."
+
+#: proximity.py:693
+msgid "The last configuration file cannot be deleted."
+msgstr "O último ficheiro de configuração não pode ser apagado."
+
+#: proximity.glade:65
+msgid ""
+"The new configuration will be created as a copy of the current "
+"configuration. Please change the according values afterwards."
+msgstr ""
+"A nova configuração será criada como uma cópia da configuração atual. "
+"Por favor, altere os valores correspondentes depois."
+
+#: proximity.py:94
+msgid "The program cannot import the module AyatanaAppIndicator3."
+msgstr "O programa não pode importar o módulo AyatanaAppIndicator3."
+
+#: proximity.py:169
+msgid "The program cannot import the module Builder (former glade)."
+msgstr "O programa não pode importar o módulo Builder (antigo glade)."
+
+#: proximity.py:104
+msgid "The program cannot import the module ConfigObj or Validator."
+msgstr "O programa não pode importar o módulo ConfigObj ou Validator."
+
+#: proximity.py:159
+msgid "The program cannot import the module GdkPixbuf."
+msgstr "O programa não pode importar o módulo GdkPixbuf."
+
+#: proximity.py:134
+msgid "The program cannot import the module bluetooth."
+msgstr "O programa não pode importar o módulo bluetooth."
+
+#: proximity.py:84
+msgid "The program cannot import the module gobject."
+msgstr "O programa não pode importar o módulo gobject."
+
+#: proximity.py:149
+msgid "The program cannot import the module pygtk."
+msgstr "O programa não pode importar o módulo pygtk."
+
+#: proximity.py:1077
+msgid ""
+"The scanning process tries to connect to each of the 30 possible ports. This "
+"will take some time and you should watch your bluetooth device for any "
+"actions to be taken. If possible click on accept/connect. If you are asked "
+"for a pin your device was not paired properly before, see the manual on how "
+"to fix this."
+msgstr ""
+"O processo de pesquisa tenta conectar-se a cada uma das 30 portas possíveis."
+"Isto levará algum tempo e deverá observar o seu dispositivo Bluetooth para "
+"quaisquer ações a serem tomadas. Se possível, clique em aceitar/conectar. Se "
+"lhe for pedido um PIN, o seu dispositivo não foi emparelhado corretamente "
+"antes, consulte o manual sobre como corrigir isto."
+
+#: proximity.py:143
+msgid "To enable it on Debian/Ubuntu, type:"
+msgstr "Para ativá-lo no Debian/Ubuntu, digite:"
+
+#: proximity.py:1381
+msgid "Unknown BLE Device"
+msgstr "Dispositivo BLE Desconhecido"
+
+#: proximity.glade:728
+msgid "Unlocking"
+msgstr "A desbloquear"
+
+#: proximity.py:1664 proximity.py:1684
+#, python-format
+msgid "Using config file '%s'."
+msgstr "A usar o ficheiro de configuração '%s'."
+
+#: proximity.py:141
+msgid "Warning: The 'bleak' library is not installed."
+msgstr "Aviso: A biblioteca 'bleak' não está instalada."
+
+#: proximity.py:512
+msgid "You must enter a name for the configuration."
+msgstr "Deve introduzir um nome para a configuração."
+
+#: proximity.py:570
+msgid "You must enter a name for the new configuration."
+msgstr "Deve introduzir um nome para a nova configuração."
+
+#: proximity.glade:1200
+msgid "_About"
+msgstr "_Sobre"
+
+#: proximity.glade:627
+msgid "_Bluetooth Device"
+msgstr "_Dispositivo Bluetooth"
+
+#: proximity.glade:106 proximity.glade:1345
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: proximity.glade:1220
+msgid "_Close"
+msgstr "_Fechar"
+
+#: proximity.glade:86
+msgid "_Create"
+msgstr "_Criar"
+
+#: proximity.glade:646
+msgid "_Distance:"
+msgstr "_Distância:"
+
+#: proximity.glade:952
+msgid "_File"
+msgstr "_Ficheiro"
+
+#: proximity.glade:1153
+msgid "_Locking"
+msgstr "_Bloqueio"
+
+#: proximity.glade:32
+msgid "_Name of new configuration:"
+msgstr "_Nome da nova configuração:"
+
+#: proximity.glade:1271
+msgid "_New name of configuration:"
+msgstr "_Novo nome da configuração:"
+
+#: proximity.glade:867
+msgid "_Proximity Details"
+msgstr "_Detalhes de Proximidade"
+
+#: proximity.glade:1325
+msgid "_Rename"
+msgstr "_Renomear"
+
+#: proximity.glade:699
+msgid "_Reset Min/Max"
+msgstr "_Repor Mín/Máx"
+
+#: proximity.glade:402
+msgid "_Scan for devices"
+msgstr "_Procurar dispositivos"
+
+#: proximity.glade:1006
+msgid "_Syslog"
+msgstr "_Syslog"
+
+#: proximity.glade:915
+msgid "_Unlocking command:"
+msgstr "_Comando de desbloqueio:"
+
+#: proximity.glade:447
+msgid "_Use selected device"
+msgstr "_Usar dispositivo selecionado"
+
+#: proximity.py:1148 proximity.py:1169 proximity.py:1572
+msgid "active"
+msgstr "ativo"
+
+#: proximity.py:1301
+msgid "closed or denied"
+msgstr "fechado ou negado"
+
+#: proximity.py:86 proximity.py:96 proximity.py:106 proximity.py:136
+#: proximity.py:151 proximity.py:161 proximity.py:171
+msgid "e.g. with Debian/Ubuntu, type"
+msgstr "ex: com Debian/Ubuntu, digite"
+
+#: proximity.py:1330 proximity.py:1557 proximity.py:1568 proximity.py:1584
+msgid "gone"
+msgstr "desaparecido"
+
+#: proximity.py:1537 proximity.py:1539
+msgid "locking"
+msgstr "a bloquear"
+
+#: proximity.py:1129
+msgid "min: "
+msgstr "mín: "
+
+#: proximity.glade:754
+msgid "min: - max: - state: -"
+msgstr "mín: - máx: - estado: -"
+
+#: proximity.glade:205
+msgid "no entries"
+msgstr "sem entradas"
+
+#: proximity.py:1549 proximity.py:1551
+msgid "proximity"
+msgstr "proximidade"
+
+#: proximity.py:1563
+msgid "running..."
+msgstr "a correr..."
+
+#: proximity.py:1529
+msgid "screen is locked"
+msgstr "o ecrã está bloqueado"
+
+#: proximity.py:1512
+msgid "screen is unlocked"
+msgstr "o ecrã está desbloqueado"
+
+#: proximity.py:343
+msgid "started."
+msgstr "iniciado."
+
+#: proximity.py:1114
+msgid "stopped."
+msgstr "parado."
+
+#: proximity.py:1520 proximity.py:1522
+msgid "unlocking"
+msgstr "a desbloquear"
+
+#: proximity.py:1299
+msgid "usable"
+msgstr "utilizável"

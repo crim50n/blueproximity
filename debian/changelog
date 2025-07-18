@@ -1,0 +1,19 @@
+blueproximity (1.4.0-0minios1) unstable; urgency=medium
+
+  * Remove all old translation files
+  * Add actual translations for ru, pt, pt_BR, it, id, fr, es, de.
+  * Add universal translation management script update-po.sh: now
+    auto-detects sources, languages, and provides detailed translation
+    statistics.
+  * Major update to main script:
+    - Add BLE device scanning.
+    - Asynchronous device discovery and UI updates.
+    - Change tray icon creator to AyatanaAppIndicator3.
+    - Update recommendations for installing dependencies for Python 3 and
+      GTK3.
+    - Improve logic for lock/unlock/proximity commands.
+    - Add migration from legacy configuration files.
+    - Fix deprecated GTK3 warnings.
+    - Enhance error handling and logging.
+
+ -- crims0n <crims0n@minios.dev>  Thu, 17 Jul 2025 18:30:05 +0300

@@ -1,0 +1,602 @@
+# Indonesian translation for BlueProximity package.
+# Copyright (C) 2008 THE BlueProximity'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the BlueProximity package.
+# crims0n <crims0n@minios.dev>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: blueproximity 1.4.0\n"
+"Report-Msgid-Bugs-To: support@minios.dev\n"
+"POT-Creation-Date: 2025-07-18 14:46+0300\n"
+"PO-Revision-Date: 2025-07-17 19:35+0300\n"
+"Last-Translator: crims0n <crims0n@minios.dev>\n"
+"Language-Team: Indonesian <id@li.org>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: proximity.py:786
+msgid ""
+"\n"
+"        BlueProximity is free software; you can redistribute it and/or "
+"modify it\n"
+"        under the terms of the GNU General Public License as published by "
+"the\n"
+"        Free Software Foundation; either version 2 of the License, or\n"
+"        (at your option) any later version.\n"
+"\n"
+"        BlueProximity is distributed in the hope that it will be useful, "
+"but\n"
+"        WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"
+"        See the GNU General Public License for more details.\n"
+"\n"
+"        You should have received a copy of the GNU General Public License\n"
+"        along with BlueProximity; if not, write to the\n"
+"\n"
+"        Free Software Foundation, Inc.,\n"
+"        59 Temple Place, Suite 330,\n"
+"        Boston, MA  02111-1307  USA\n"
+"        "
+msgstr ""
+"\n"
+"        BlueProximity adalah perangkat lunak bebas; Anda dapat "
+"mendistribusikannya dan/atau memodifikasinya\n"
+"        berdasarkan ketentuan GNU General Public License sebagaimana "
+"diterbitkan oleh\n"
+"        Free Software Foundation; baik versi 2 dari Lisensi, atau\n"
+"        (sesuai pilihan Anda) versi selanjutnya.\n"
+"\n"
+"        BlueProximity didistribusikan dengan harapan akan berguna, tetapi\n"
+"        TANPA GARANSI APA PUN; bahkan tanpa garansi tersirat dari\n"
+"        KEMAMPUAN PERDAGANGAN atau KESESUAIAN UNTUK TUJUAN TERTENTU.\n"
+"        Lihat GNU General Public License untuk detail lebih lanjut.\n"
+"\n"
+"        Anda seharusnya telah menerima salinan GNU General Public License\n"
+"        bersama dengan BlueProximity; jika tidak, tulis ke\n"
+"\n"
+"        Free Software Foundation, Inc.,\n"
+"        59 Temple Place, Suite 330,\n"
+"        Boston, MA  02111-1307  USA\n"
+"        "
+
+#: proximity.py:1160
+msgid ""
+"\n"
+"Simulation Mode (locking disabled)"
+msgstr ""
+"\n"
+"Mode Simulasi (penguncian dinonaktifkan)"
+
+#: proximity.py:1130
+msgid " max: "
+msgstr " maks: "
+
+#: proximity.py:1131
+msgid " state: "
+msgstr " status: "
+
+#: proximity.py:1666
+#, python-format
+msgid "'%s' is not a valid config file: %s"
+msgstr "'%s' bukan berkas konfigurasi yang valid: %s"
+
+#: proximity.py:1519 proximity.py:1522 proximity.py:1536 proximity.py:1539
+#: proximity.py:1549 proximity.py:1550
+#, python-format
+msgid ""
+"A command for %s has been skipped because the former command did not finish "
+"yet."
+msgstr ""
+"Perintah untuk %s telah dilewati karena perintah sebelumnya belum selesai."
+
+#: proximity.py:524 proximity.py:584
+#, python-format
+msgid "A configuration file with the name '%s' already exists."
+msgstr "File konfigurasi dengan nama '%s' sudah ada."
+
+#: proximity.py:476
+msgid "About"
+msgstr "Tentang"
+
+#: proximity.glade:886
+msgid "Action commands"
+msgstr "Perintah tindakan"
+
+#: proximity.py:142
+msgid "BLE device scanning will be disabled."
+msgstr "Pemindaian perangkat BLE akan dinonaktifkan."
+
+#: proximity.py:1393
+msgid "BLE scan with Bleak failed: {}"
+msgstr "Pemindaian BLE dengan Bleak gagal: {}"
+
+#: proximity.py:1403
+msgid "Bleak library not found, skipping BLE scan."
+msgstr "Pustaka Bleak tidak ditemukan, melewati pemindaian BLE."
+
+#: proximity.glade:169
+msgid "BlueProximity Preferences"
+msgstr "Preferensi BlueProximity"
+
+#: proximity.py:437
+msgid "Channel"
+msgstr "Saluran"
+
+#: proximity.py:1372
+msgid "Classic Bluetooth scan failed: {}"
+msgstr "Pemindaian Bluetooth klasik gagal: {}"
+
+#: proximity.glade:1055
+msgid ""
+"Command _interval:\n"
+"(sec.)"
+msgstr ""
+"_Interval perintah:\n"
+"(detik)"
+
+#: proximity.py:1228
+msgid "Could not open logfile '{}' for writing."
+msgstr "Tidak dapat membuka berkas log '{}' untuk menulis."
+
+#: proximity.py:1401
+msgid "Could not run Bleak scan: {}"
+msgstr "Tidak dapat menjalankan pemindaian Bleak: {}"
+
+#: proximity.glade:8
+msgid "Create new configuration"
+msgstr "Buat konfigurasi baru"
+
+#: proximity.py:1683
+msgid "Creating new configuration."
+msgstr "Membuat konfigurasi baru."
+
+#: proximity.py:1158
+msgid "Current State: "
+msgstr "Status Saat Ini: "
+
+#: proximity.glade:674
+msgid "D_istance:"
+msgstr "D_istance:"
+
+#: proximity.glade:660
+msgid "D_uration (sec.):"
+msgstr "D_urasi (detik.):"
+
+#: proximity.glade:246
+msgid "Delete Configuration"
+msgstr "Hapus Konfigurasi"
+
+#: proximity.py:1157
+msgid "Detected Distance: "
+msgstr "Jarak Terdeteksi: "
+
+#: proximity.py:1047
+msgid "Device scan finished."
+msgstr "Pemindaian perangkat selesai."
+
+#: proximity.glade:716
+msgid "Distance:"
+msgstr "Jarak:"
+
+#: proximity.py:700
+#, python-format
+msgid "Do you really want to delete the configuration '%s'?"
+msgstr "Apakah Anda yakin ingin menghapus konfigurasi '%s'?"
+
+#: proximity.glade:688
+msgid "Dur_ation (sec.):"
+msgstr "Dur_asi (detik.):"
+
+#: proximity.py:1639
+#, python-format
+msgid "Error migrating legacy configuration: %s"
+msgstr "Kesalahan memigrasikan konfigurasi lama: %s"
+
+#: proximity.glade:972
+msgid "F_acility"
+msgstr "F_asilitas"
+
+#: proximity.glade:941
+msgid "File_name"
+msgstr "Nama_file"
+
+#: proximity.py:1625
+#, python-format
+msgid "Found legacy configuration file: %s"
+msgstr "Ditemukan berkas konfigurasi lama: %s"
+
+#: proximity.py:1343
+msgid "Initialized..."
+msgstr "Diinisialisasi..."
+
+#: proximity.glade:901
+msgid "L_ocking command:"
+msgstr "Perintah _Mengunci:"
+
+#: proximity.py:762
+msgid "Leave it - it's locked, come back - it's back too..."
+msgstr "Biarkan saja - itu terkunci, kembali - itu juga kembali..."
+
+#: proximity.py:1636
+#, python-format
+msgid ""
+"Legacy configuration not migrated because a file already exists at the "
+"destination: %s"
+msgstr ""
+"Konfigurasi lama tidak dimigrasikan karena file sudah ada di tujuan: %s"
+
+#: proximity.glade:840
+msgid "Locking"
+msgstr "Mengunci"
+
+#: proximity.glade:1025
+msgid "Logging"
+msgstr "Pencatatan"
+
+#: proximity.py:427
+msgid "MAC"
+msgstr "MAC"
+
+#: proximity.glade:481
+msgid "MAC _Address"
+msgstr "_Alamat MAC"
+
+#: proximity.glade:741
+msgid "Measured atm"
+msgstr "Diukur saat ini"
+
+#: proximity.py:431
+msgid "Name"
+msgstr "Nama"
+
+#: proximity.glade:225
+msgid "New Configuration"
+msgstr "Konfigurasi Baru"
+
+#: proximity.py:1502
+msgid "No connection found, trying to establish one..."
+msgstr "Tidak ada koneksi ditemukan, mencoba untuk membuat koneksi..."
+
+#: proximity.py:1045
+msgid "No devices found."
+msgstr "Tidak ada perangkat yang ditemukan."
+
+#: proximity.py:465
+msgid "Pause"
+msgstr "Jeda"
+
+#: proximity.py:105
+msgid "Please make sure the ConfigObject package for python is installed."
+msgstr "Pastikan paket ConfigObject untuk python sudah terinstal."
+
+#: proximity.py:95
+msgid ""
+"Please make sure the GI bindings for AyatanaAppIndicator3 are installed."
+msgstr "Pastikan GI bindings untuk AyatanaAppIndicator3 sudah terinstal."
+
+#: proximity.py:85
+msgid "Please make sure the GObject bindings for python are installed."
+msgstr "Pastikan GObject bindings untuk python sudah terinstal."
+
+#: proximity.py:150 proximity.py:160
+msgid "Please make sure the GTK3 bindings for python are installed."
+msgstr "Pastikan GTK3 bindings untuk python sudah terinstal."
+
+#: proximity.py:170
+msgid "Please make sure the Glade3 bindings for python are installed."
+msgstr "Pastikan Glade3 bindings untuk python sudah terinstal."
+
+#: proximity.py:135
+msgid ""
+"Please make sure the bluetooth bindings for python as well as bluez are "
+"installed."
+msgstr "Pastikan bluetooth bindings untuk python dan bluez sudah terinstal."
+
+#: proximity.glade:358
+msgid "Please note that the device should already be paired!"
+msgstr "Harap dicatat bahwa perangkat seharusnya sudah dipasangkan!"
+
+#: proximity.py:454
+msgid "Preferences"
+msgstr "Preferensi"
+
+#: proximity.glade:1041
+msgid "Pro_ximity command:"
+msgstr "Perintah _Kedekatan:"
+
+#: proximity.py:491
+msgid "Quit"
+msgstr "Keluar"
+
+#: proximity.glade:519
+msgid "RFCOMM C_hannel"
+msgstr "C_hannel RFCOMM"
+
+#: proximity.glade:267
+msgid "Rename Configuration"
+msgstr "Ganti nama konfigurasi"
+
+#: proximity.glade:1247
+msgid "Rename configuration"
+msgstr "Ganti nama konfigurasi"
+
+#: proximity.glade:1304
+msgid ""
+"Renaming the configuration will change the name of the config file on the "
+"disk."
+msgstr ""
+"Mengganti nama konfigurasi akan mengubah nama berkas konfigurasi di "
+"disk."
+
+#: proximity.py:1059 proximity.py:1093 proximity.glade:572
+msgid "Sca_n channels on device"
+msgstr "Pinda_i saluran pada perangkat"
+
+#: proximity.py:967 proximity.py:993
+msgid "Scanning"
+msgstr "Memindai"
+
+#: proximity.py:1376
+msgid "Scanning for BLE devices with Bleak..."
+msgstr "Memindai perangkat BLE dengan Bleak..."
+
+#: proximity.py:1365
+msgid "Scanning for classic Bluetooth devices..."
+msgstr "Memindai perangkat Bluetooth klasik..."
+
+#: proximity.glade:343
+msgid "Scanning..."
+msgstr "Memindai..."
+
+#: proximity.glade:305
+msgid "Select from _detected devices:"
+msgstr "Pilih dari perangkat yang _terdeteksi:"
+
+#: proximity.glade:189
+msgid "Selected Confi_guration"
+msgstr "Konfi_gurasi yang Dipilih"
+
+#: proximity.py:988
+msgid "Starting device scan..."
+msgstr "Memulai pemindaian perangkat..."
+
+#: proximity.py:441
+msgid "State"
+msgstr "Status"
+
+#: proximity.py:1158
+msgid "Status: "
+msgstr "Status: "
+
+#: proximity.py:1073
+msgid "Stop sca_nning"
+msgstr "Hentikan Pinda_ian"
+
+#: proximity.py:1634
+#, python-format
+msgid "Successfully migrated legacy configuration to: %s"
+msgstr "Berhasil memigrasikan konfigurasi lama ke: %s"
+
+#: proximity.py:546 proximity.py:730
+#, python-format
+msgid "The configfile '%s' could not be deleted."
+msgstr "File konfigurasi '%s' tidak dapat dihapus."
+
+#: proximity.py:693
+msgid "The last configuration file cannot be deleted."
+msgstr "File konfigurasi terakhir tidak dapat dihapus."
+
+#: proximity.glade:65
+msgid ""
+"The new configuration will be created as a copy of the current "
+"configuration. Please change the according values afterwards."
+msgstr ""
+"Konfigurasi baru akan dibuat sebagai salinan dari konfigurasi saat "
+"ini. Harap ubah nilai yang sesuai setelahnya."
+
+#: proximity.py:94
+msgid "The program cannot import the module AyatanaAppIndicator3."
+msgstr "Program tidak dapat mengimpor modul AyatanaAppIndicator3."
+
+#: proximity.py:169
+msgid "The program cannot import the module Builder (former glade)."
+msgstr "Program tidak dapat mengimpor modul Builder (sebelumnya glade)."
+
+#: proximity.py:104
+msgid "The program cannot import the module ConfigObj or Validator."
+msgstr "Program tidak dapat mengimpor modul ConfigObj atau Validator."
+
+#: proximity.py:159
+msgid "The program cannot import the module GdkPixbuf."
+msgstr "Program tidak dapat mengimpor modul GdkPixbuf."
+
+#: proximity.py:134
+msgid "The program cannot import the module bluetooth."
+msgstr "Program tidak dapat mengimpor modul bluetooth."
+
+#: proximity.py:84
+msgid "The program cannot import the module gobject."
+msgstr "Program tidak dapat mengimpor modul gobject."
+
+#: proximity.py:149
+msgid "The program cannot import the module pygtk."
+msgstr "Program tidak dapat mengimpor modul pygtk."
+
+#: proximity.py:1077
+msgid ""
+"The scanning process tries to connect to each of the 30 possible ports. This "
+"will take some time and you should watch your bluetooth device for any "
+"actions to be taken. If possible click on accept/connect. If you are asked "
+"for a pin your device was not paired properly before, see the manual on how "
+"to fix this."
+msgstr ""
+"Proses pemindaian mencoba untuk menyambung ke setiap dari 30 port yang "
+"mungkin. Ini akan memakan waktu dan Anda harus memantau perangkat bluetooth "
+"Anda untuk setiap tindakan yang akan diambil. Jika memungkinkan, klik terima/"
+"sambungkan. Jika Anda diminta pin, perangkat Anda belum dipasangkan dengan "
+"benar sebelumnya, lihat manual tentang cara memperbaikinya."
+
+#: proximity.py:143
+msgid "To enable it on Debian/Ubuntu, type:"
+msgstr "Untuk mengaktifkannya di Debian/Ubuntu, ketik:"
+
+#: proximity.py:1381
+msgid "Unknown BLE Device"
+msgstr "Perangkat BLE Tidak Dikenal"
+
+#: proximity.glade:728
+msgid "Unlocking"
+msgstr "Membuka Kunci"
+
+#: proximity.py:1664 proximity.py:1684
+#, python-format
+msgid "Using config file '%s'."
+msgstr "Menggunakan berkas konfigurasi '%s'."
+
+#: proximity.py:141
+msgid "Warning: The 'bleak' library is not installed."
+msgstr "Peringatan: Pustaka 'bleak' tidak terinstal."
+
+#: proximity.py:512
+msgid "You must enter a name for the configuration."
+msgstr "Anda harus memasukkan nama untuk konfigurasi."
+
+#: proximity.py:570
+msgid "You must enter a name for the new configuration."
+msgstr "Anda harus memasukkan nama untuk konfigurasi baru."
+
+#: proximity.glade:1200
+msgid "_About"
+msgstr "_Tentang"
+
+#: proximity.glade:627
+msgid "_Bluetooth Device"
+msgstr "Perangkat _Bluetooth"
+
+#: proximity.glade:106 proximity.glade:1345
+msgid "_Cancel"
+msgstr "_Batal"
+
+#: proximity.glade:1220
+msgid "_Close"
+msgstr "_Tutup"
+
+#: proximity.glade:86
+msgid "_Create"
+msgstr "_Buat"
+
+#: proximity.glade:646
+msgid "_Distance:"
+msgstr "_Jarak:"
+
+#: proximity.glade:952
+msgid "_File"
+msgstr "_Berkas"
+
+#: proximity.glade:1153
+msgid "_Locking"
+msgstr "_Mengunci"
+
+#: proximity.glade:32
+msgid "_Name of new configuration:"
+msgstr "_Nama konfigurasi baru:"
+
+#: proximity.glade:1271
+msgid "_New name of configuration:"
+msgstr "_Nama baru konfigurasi:"
+
+#: proximity.glade:867
+msgid "_Proximity Details"
+msgstr "_Detail Kedekatan"
+
+#: proximity.glade:1325
+msgid "_Rename"
+msgstr "_Ganti nama"
+
+#: proximity.glade:699
+msgid "_Reset Min/Max"
+msgstr "_Reset Min/Max"
+
+#: proximity.glade:402
+msgid "_Scan for devices"
+msgstr "_Pindai perangkat"
+
+#: proximity.glade:1006
+msgid "_Syslog"
+msgstr "_Syslog"
+
+#: proximity.glade:915
+msgid "_Unlocking command:"
+msgstr "Perintah _Membuka Kunci:"
+
+#: proximity.glade:447
+msgid "_Use selected device"
+msgstr "_Gunakan perangkat yang dipilih"
+
+#: proximity.py:1148 proximity.py:1169 proximity.py:1572
+msgid "active"
+msgstr "aktif"
+
+#: proximity.py:1301
+msgid "closed or denied"
+msgstr "ditutup atau ditolak"
+
+#: proximity.py:86 proximity.py:96 proximity.py:106 proximity.py:136
+#: proximity.py:151 proximity.py:161 proximity.py:171
+msgid "e.g. with Debian/Ubuntu, type"
+msgstr "contoh: dengan Debian/Ubuntu, ketik"
+
+#: proximity.py:1330 proximity.py:1557 proximity.py:1568 proximity.py:1584
+msgid "gone"
+msgstr "hilang"
+
+#: proximity.py:1537 proximity.py:1539
+msgid "locking"
+msgstr "mengunci"
+
+#: proximity.py:1129
+msgid "min: "
+msgstr "min: "
+
+#: proximity.glade:754
+msgid "min: - max: - state: -"
+msgstr "min: - maks: - status: -"
+
+#: proximity.glade:205
+msgid "no entries"
+msgstr "tidak ada entri"
+
+#: proximity.py:1549 proximity.py:1551
+msgid "proximity"
+msgstr "kedekatan"
+
+#: proximity.py:1563
+msgid "running..."
+msgstr "berjalan..."
+
+#: proximity.py:1529
+msgid "screen is locked"
+msgstr "layar terkunci"
+
+#: proximity.py:1512
+msgid "screen is unlocked"
+msgstr "layar tidak terkunci"
+
+#: proximity.py:343
+msgid "started."
+msgstr "dimulai."
+
+#: proximity.py:1114
+msgid "stopped."
+msgstr "dihentikan."
+
+#: proximity.py:1520 proximity.py:1522
+msgid "unlocking"
+msgstr "membuka kunci"
+
+#: proximity.py:1299
+msgid "usable"
+msgstr "dapat digunakan"
