@@ -6,5 +6,5 @@ blueproximity_error.svg usr/share/blueproximity/
 blueproximity_nocon.svg usr/share/blueproximity/
 blueproximity_pause.svg usr/share/blueproximity/
 doc usr/share/blueproximity/
-addons/blueproximity.desktop usr/share/applications/blueproximity.desktop
-addons/blueproximity.xpm usr/share/pixmaps/blueproximity.xpm
+addons/blueproximity.desktop usr/share/applications/
+addons/blueproximity.xpm usr/share/pixmaps/
