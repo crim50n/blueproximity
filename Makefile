@@ -28,7 +28,7 @@ build: clean binary
 binary: $(ORIG_TARBALL) $(DEBIAN_STAMP) locales
 	@echo "--- 4. Running dpkg-buildpackage ---"
 	@echo "     Packages will be created in the '$(BUILD_DIR)' directory"
-	@(cd $(BUILD_SRC_DIR) && dpkg-buildpackage -us -uc -b)
+	@(cd $(BUILD_SRC_DIR) && dpkg-buildpackage -us -uc)
 	@echo "--- Build finished! ---"
 
 
